@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Dalite</string>
+    <string name="tab_current">Now</string>
+    <string name="tab_hourly">Hourly</string>
+    <string name="tab_daily">15-Day</string>
+    <string name="search_title">search</string>
+    <string name="add_location">Add a Location first</string>
+</resources>

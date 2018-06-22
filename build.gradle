@@ -1,0 +1,73 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.kotlin_version = '1.2.51'
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.3'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.6.2'
+        classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:0.9.16"
+
+    }
+}
+
+allprojects {
+
+    apply plugin: 'com.jfrog.artifactory'
+    apply plugin: 'maven-publish'
+
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url 'https://maven.google.com' }
+        maven { url "http://dl.bintray.com/jetbrains/spek" }
+        maven {
+            url = artifactory_url
+            credentials {
+                username artifactory_username
+                password artifactory_password
+            }
+        }
+    }
+}
+
+
+ext {
+
+    compileSdkVersion = 28
+    minSdkVersion = 21
+    targetSdkVersion = 28
+    supportLibVersion = '27.1.1'
+
+    //change to false to publish a release build
+    SNAPSHOT = true
+
+    VERSION_MAJOR = 0
+    VERSION_MINOR = 1
+    VERSION_MICRO = 0
+
+    VERSION_EXTENSION = SNAPSHOT ? "-SNAPSHOT" : ""
+    VERSION = "$VERSION_MAJOR.$VERSION_MINOR.$VERSION_MICRO$VERSION_EXTENSION"
+
+    MVN_REPO_URL_BASE = artifactory_url
+
+    MVN_GROUP = "com.weather.android"
+    MVN_ARTIFACT_ID = 'kdal'
+
+    MVN_USERNAME = artifactory_username
+    MVN_PASSWORD = artifactory_password
+}
+
+
+/**
+ *  Run "./gradlew artifactoryPublish" to publish the artifacts
+ */
+artifactoryPublish.skip = true
+
+artifactoryPublish.dependsOn('kdal:uploadArchives')
+

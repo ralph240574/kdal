@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_margin">10dp</dimen>
+
+    <dimen name="daily_colum0_width">130dp</dimen>
+    <dimen name="daily_colum1_width">35dp</dimen>
+    <dimen name="daily_colum2_width">45dp</dimen>
+
+    <dimen name="hourly_colum0_width">45dp</dimen>
+    <dimen name="hourly_colum1_width">45dp</dimen>
+    <dimen name="hourly_colum2_width">45dp</dimen>
+    <dimen name="hourly_colum3_width">50dp</dimen>
+    <dimen name="card_margin">16dp</dimen>
+
+</resources>

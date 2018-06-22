@@ -1,0 +1,83 @@
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+def getRepositoryUrl() {
+    rootProject.ext.MVN_REPO_URL_BASE
+}
+
+afterEvaluate { project ->
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+                pom.groupId = rootProject.ext.MVN_GROUP
+                pom.version = rootProject.ext.VERSION
+                pom.artifactId = rootProject.ext.MVN_ARTIFACT_ID
+
+                repository(url: repositoryUrl) {
+                    authentication(userName: MVN_USERNAME, password: MVN_PASSWORD)
+                }
+
+                pom.project {
+                    name rootProject.ext.MVN_GROUP
+                    packaging 'aar'
+                    description POM_DESCRIPTION
+                    url POM_URL
+
+                    scm {
+                        url POM_SCM_URL
+                        connection POM_SCM_CONNECTION
+                        developerConnection POM_SCM_DEV_CONNECTION
+                    }
+
+//                    TODO: Uncomment after license definition
+//                    licenses {
+//                        license {
+//                            name POM_LICENCE_NAME
+//                            url POM_LICENCE_URL
+//                            distribution POM_LICENCE_DIST
+//                        }
+//                    }
+               }
+            }
+        }
+    }
+
+    signing {
+        required { gradle.taskGraph.hasTask("uploadArchives") }
+        sign configurations.archives
+    }
+
+
+    dokka {
+        outputFormat = 'html'
+        outputDirectory = "$buildDir/docs/javadoc-${rootProject.ext.VERSION}"
+
+        linkMapping {
+            // Source directory
+            dir = "kdal/src/main/java/com/weather/kdal"
+
+            // URL showing where the source code can be accessed through the web browser
+            url = "https://github.com/TheWeatherCompany/android-kdal/blob/master/kdal/src/main/java/com/weather/kdal"
+
+            // Suffix which is used to append the line number to the URL. Use #L for GitHub
+            suffix = "#L"
+        }
+    }
+
+    task sourcesJar(type: Jar) {
+        from android.sourceSets.main.java.srcDirs
+        classifier = "sources"
+    }
+
+    task dokkaJar(type: Jar, dependsOn: dokka) {
+        from "$buildDir/docs/javadoc-${rootProject.ext.VERSION}"
+        classifier = "kdoc"
+    }
+
+    artifacts {
+        archives sourcesJar
+        archives dokkaJar
+    }
+}

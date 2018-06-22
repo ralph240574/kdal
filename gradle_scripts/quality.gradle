@@ -1,0 +1,128 @@
+apply plugin: 'findbugs'
+apply plugin: 'jacoco'
+apply plugin: 'pmd'
+apply plugin: 'checkstyle'
+
+pmd.toolVersion = '5.4.0'
+checkstyle.toolVersion = "6.0"
+
+// Add findbugs, pmd and lint to the check task.
+check.dependsOn 'findbugs', 'pmd', 'checkstyle'
+
+def quality_html = project.hasProperty('quality_html') ? project.getProperty('quality_html').toBoolean() : false
+
+
+task findbugs(type: FindBugs, dependsOn: 'assembleDebug') {
+    ignoreFailures = true
+    effort = "max"
+    reportLevel = "high"
+    excludeFilter = new File("${project.rootDir}/quality/findbugs/findbugs-filter.xml")
+    classes = files(
+            "${project.buildDir}/intermediates/classes",
+            "${project.buildDir}/tmp/kotlin-classes"
+    )
+
+    source 'src/main'
+    include '**/*.java'
+    include '**/*.kt'
+    exclude '**/gen/**'
+
+    reports {
+        // only one type of report
+        xml.enabled = !quality_html
+        html.enabled = quality_html
+
+        xml {
+            destination file("$project.buildDir/reports/findbugs/findbugs.xml")
+        }
+        html {
+            destination file("$project.buildDir/reports/findbugs/findbugs.html")
+        }
+    }
+
+    classpath = files()
+}
+
+android {
+    lintOptions {
+        abortOnError false
+
+        // if true, generate an HTML report (with issue explanations, sourcecode, etc)
+        htmlReport true
+        htmlOutput file("$project.buildDir/reports/lint/lint.xml")
+        xmlReport true
+        // optional path to report (default will be lint-results.html in the builddir)
+        htmlOutput file("$project.buildDir/reports/lint/lint.html")
+
+    }
+}
+
+
+jacoco {
+    toolVersion = "0.7.5.201505241946"
+    reportsDir = file("$buildDir/reports/jacoco")
+}
+
+
+task jacocoTestReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+    // what to exclude from coverage report
+    // UI, "noise", generated classes, platform classes, etc.
+    def excludes = [
+            '**/R.class',
+            '**/R$*.class',
+            '**/BuildConfig.*',
+            '**/Manifest*.*',
+//            '**/*Test*.*',
+            'android/**/*.*'
+    ]
+    //First below is for java, but we do not need java
+    classDirectories =
+            fileTree(dir: "$buildDir/intermediates/classes/debug", excludes: excludes) +
+                    fileTree(dir: "$buildDir/tmp/kotlin-classes/debug", excludes: excludes
+                    )
+    // sources all in same place - If Java and Kotlin is needed, add kotlin as well
+    sourceDirectories = files(android.sourceSets.main.java.srcDirs)
+    executionData = files("$buildDir/jacoco/junitPlatformTestDebug.exec")
+}
+
+task pmd(type: Pmd) {
+    shouldRunAfter "assemble"
+    ruleSetFiles = files("${project.rootDir}/quality/pmd/pmd-ruleset.xml")
+
+    ignoreFailures = true
+    ruleSets = []
+
+    source 'src'
+    include '**/*.java'
+    include '**/*.kt'
+    exclude '**/gen/**'
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+        xml {
+            destination file("$project.buildDir/reports/pmd/pmd.xml")
+        }
+        html {
+            destination file("$project.buildDir/reports/pmd/pmd.html")
+        }
+    }
+}
+
+task checkstyle(type: Checkstyle) {
+    ignoreFailures = true
+    configFile file("${project.rootDir}/quality/checkstyle/checkstyleRules.xml")
+    configProperties.checkstyleSuppressionsPath = file("${project.rootDir}/quality/checkstyle/suppressions.xml").absolutePath
+    source 'src'
+    include '**/*.java'
+    include '**/*.kt'
+    exclude '**/gen/**'
+
+    classpath = files()
+}
+
+
