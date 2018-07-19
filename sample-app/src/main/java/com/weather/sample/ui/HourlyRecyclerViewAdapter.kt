@@ -5,13 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-
 import com.weather.android.kdal.app.R
 import com.weather.android.kdal.model.V3WxForecastHourly10day
-
-import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.util.Locale
+import java.util.*
 
 
 class HourlyRecyclerViewAdapter(private val v3WxForecastHourly10day: V3WxForecastHourly10day)//        TimeZone tz = DateParser.getTimeZone(v3WxForecastHourly10day.get(0));
@@ -45,17 +42,17 @@ class HourlyRecyclerViewAdapter(private val v3WxForecastHourly10day: V3WxForecas
             //            itemViewHolder.time.setText(dateFormat.format(time));
 
             val cond = v3WxForecastHourly10day.iconCode[adjPos]
-            holder.cond.text = "" + cond
+            holder.cond.text = "$cond"
 
             val temp = v3WxForecastHourly10day.temperature[adjPos]
-            holder.temp.text = "" + temp + "F"
+            holder.temp.text = "$temp F"
 
             val precip = v3WxForecastHourly10day.precipChance[adjPos]
             holder.precip.text = "$precip%"
-            val wind = v3WxForecastHourly10day.windDirection[adjPos]
-            val dir = v3WxForecastHourly10day.windDirection[adjPos]
+            val wind = v3WxForecastHourly10day.windSpeed[adjPos]
+            val dir = v3WxForecastHourly10day.windDirectionCardinal[adjPos]
 
-            holder.wind.text = dir.toString() + " " + wind + " MPH"
+            holder.wind.text = "$dir $wind MPH"
         }
     }
 

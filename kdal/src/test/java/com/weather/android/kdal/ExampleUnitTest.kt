@@ -133,7 +133,7 @@ class ExampleUnitTest {
         val single = v3Repo.getV3AggFromCache(
                 products,
                 latLng = v3Repo.latLng,
-                maxCacheAgeInSec = 30)
+                maxAgeResponse = 30)
 
         var t: Throwable? = null
 
@@ -167,7 +167,7 @@ class ExampleUnitTest {
                             val observable2 = v3Repo.getV3AggFromCache(
                                     products,
                                     latLng = v3Repo.latLng,
-                                    maxCacheAgeInSec = 60)
+                                    maxAgeResponse = 60)
 
                             observable2.subscribe({ v3Agg -> result = v3Agg },
                                     { throwable2 -> t = throwable2 })
@@ -199,7 +199,7 @@ class ExampleUnitTest {
                             val observable2 = v3Repo.getV3AggFromCache(
                                     products,
                                     latLng = v3Repo.latLng,
-                                    maxCacheAgeInSec = 30)
+                                    maxAgeResponse = 30)
 
                             observable2.subscribe({ v3Agg -> result = v3Agg },
                                     { throwable2 -> t = throwable2 })

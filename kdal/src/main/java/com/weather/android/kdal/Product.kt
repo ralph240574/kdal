@@ -15,7 +15,7 @@ enum class Product(val productName: String, val queryParameter: Set<QueryParamet
     VT1_OBSERVATION("vt1observation"),
     VT1_POLLENOBS("Vt1pollenobs", setOf(LANGUAGE)),
     VT1_PRECIPITATION("vt1precipitation"),
-    VT1_RUNWEATHERHOURLY("vt1runweatherhourly",setOf()),
+    VT1_RUNWEATHERHOURLY("vt1runweatherhourly", setOf()),
     VT1_WWIR("vt1wwir"),
     V2_FCSTINTRADAY3("V2fcstintraday3"),
     V2_GLOBALAIR("v2globalair", setOf(LANGUAGE)),
@@ -23,18 +23,18 @@ enum class Product(val productName: String, val queryParameter: Set<QueryParamet
     V2_IDX_DRIVE_CURRENT("V2idxDriveCurrent", setOf(LANGUAGE)),
     V2_IDX_POLLEN_DAYPART_15("v2idxPollenDaypart15", setOf(LANGUAGE)),
     V2_IDX_RUN_DAY_PART15("v2idxRunDaypart15", setOf(LANGUAGE)),
-    V3_ALERTS_DETAIL("v3alertsDetail", setOf(LANGUAGE,ALERT_ID)), // will only work with a product that uses geocode
+    V3_ALERTS_DETAIL("v3alertsDetail", setOf(LANGUAGE, ALERT_ID)), // will only work with a product that uses geocode
     V3_ALERTS_HEADLINES("v3alertsHeadlines", setOf(LANGUAGE)),
     V3_WX_CONDITIONS_HISTORICAL_DAILYSUMMARY_30_DAY("v3-wx-conditions-historical-dailysummary-30day"),
     V3_WX_CONDITIONS_HISTORICAL_HOURLY_1_DAY("v3-wx-conditions-historical-hourly-1day"),
     V3_WX_FORECAST_DAILY_15_DAY("v3-wx-forecast-daily-15day"),
     V3_WX_FORECAST_HOURLY_2_DAY("v3-wx-forecast-hourly-2day"),
     V3_WX_FORECAST_HOURLY_10_DAY("v3-wx-forecast-hourly-10day"),
-    V3_WX_GLOBAL_AIR_QUALITY("v3-wx-globalAirQuality", setOf(LANGUAGE,SCALE)),
+    V3_WX_GLOBAL_AIR_QUALITY("v3-wx-globalAirQuality", setOf(LANGUAGE, SCALE)),
     V3_WX_INDICES_FLUX_DAILY_15_DAY("v3-wx-indices-flux-daily-15day", setOf(UNITS)),
     V3_WX_INDICES_POLLEN_HISTORICAL_1DAY("v3-wx-indices-pollen-historical-1day", setOf(LANGUAGE, DATE_YYYYMMdd)),
-    V3_WX_OBSERVATIONS_CURRENT("v3-wx-observations-current");
-
+    V3_WX_OBSERVATIONS_CURRENT("v3-wx-observations-current"),
+    V3_WX_SKICONDITIONS("V3WxSkiconditions");
 
     //SKI DATA??
 

@@ -35,26 +35,26 @@ class DailyRecyclerViewAdapter(private val vt1dailyforecast: Vt1dailyforecast) :
 
         val adjPos = position - 1
         if (holder is ItemViewHolder) {
-            formatText(holder.day, "%s", vt1dailyforecast.day.dayPartName[adjPos] ?: "")
-            formatText(holder.night, "%s", vt1dailyforecast.night.dayPartName[adjPos] ?: "")
+            formatText(holder.day, "%s", vt1dailyforecast.day.dayPartName[adjPos])
+            formatText(holder.night, "%s", vt1dailyforecast.night.dayPartName[adjPos])
 
-            formatText(holder.dayCond, "%d", vt1dailyforecast.day.icon[adjPos] ?: 0)
-            formatText(holder.nightCond, "%d", vt1dailyforecast.night.icon[adjPos] ?: 0)
+            formatText(holder.dayCond, "%d", vt1dailyforecast.day.icon[adjPos])
+            formatText(holder.nightCond, "%d", vt1dailyforecast.night.icon[adjPos])
 
-            formatText(holder.dayTemp, "%d F", vt1dailyforecast.day.temperature[adjPos] ?: 0)
-            formatText(holder.nightTemp, "%d F", vt1dailyforecast.night.temperature[adjPos] ?: 0)
+            formatText(holder.dayTemp, "%d F", vt1dailyforecast.day.temperature[adjPos])
+            formatText(holder.nightTemp, "%d F", vt1dailyforecast.night.temperature[adjPos])
 
-            val dayDir = vt1dailyforecast.day.windDirCompass[adjPos] ?: ""
-            val daySpeed = vt1dailyforecast.day.windSpeed[adjPos] ?: 0
+            val dayDir = vt1dailyforecast.day.windDirCompass[adjPos]
+            val daySpeed = vt1dailyforecast.day.windSpeed[adjPos]
             formatText(holder.dayWind, "%1\$s %2\$d MPH", dayDir, daySpeed)
 
-            val nightDir = vt1dailyforecast.night.windDirCompass[adjPos] ?: ""
-            val nightSpeed = vt1dailyforecast.night.windSpeed[adjPos] ?: 0
+            val nightDir = vt1dailyforecast.night.windDirCompass[adjPos]
+            val nightSpeed = vt1dailyforecast.night.windSpeed[adjPos]
             formatText(holder.nightWind, "%1\$s %2\$d MPH", nightDir, nightSpeed)
         }
     }
 
-    fun formatText(textView: TextView, text: String, vararg s: Any) {
+    fun formatText(textView: TextView, text: String, vararg s: Any?) {
         if (!s.isEmpty()) {
             textView.visibility = View.VISIBLE
             textView.text = String.format(text, *s)

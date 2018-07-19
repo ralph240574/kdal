@@ -39,7 +39,7 @@ class ApiKeyInterceptor(private val queryParameterForApiKey: String, private val
     }
 }
 
-class RewriteResponse(private val maxCacheAgeInSec: Long) : okhttp3.Interceptor {
+class RewriteResponse(private val maxCacheAgeInSec: Int) : okhttp3.Interceptor {
 
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {

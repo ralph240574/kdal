@@ -21,13 +21,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
-    companion object {
-
-        val TAG = "MainActivity"
-    }
-
-
 }
 
 

@@ -19,7 +19,6 @@ interface V3AggInterface {
             : Single<V3Agg>
 
     @GET("v3/aggcommon/{path}?format=json")
-//    @Headers("Cache-Control: only-if-cached")
     fun getV3AggFromCache(@HeaderMap headers: Map<String, String>?,
                           @Path("path") path: String,
                           @Query("language") language: String?,

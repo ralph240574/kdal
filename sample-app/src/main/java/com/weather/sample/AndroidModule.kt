@@ -25,6 +25,6 @@ class AndroidModule(private val application: DemoApplication) {
                 apiKey = apiKey,
                 cacheDir = application.cacheDir,
                 baseUrl = "http://api.weather.com",
-                maxCacheAgeInSec = 60)
+                loggingEnabled = true)
     }
 }

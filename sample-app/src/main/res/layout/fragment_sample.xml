@@ -18,4 +18,50 @@
         android:background="@android:color/white" />
 
 
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <RadioButton
+            android:id="@+id/offline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:text="OFFLINE" />
+
+        <RadioButton
+            android:id="@+id/cache_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CACHE_FIRST" />
+
+        <RadioButton
+            android:id="@+id/cache_and_network"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CACHE_AND_NETWORK" />
+
+        <RadioButton
+            android:id="@+id/network_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NETWORK_FIRST" />
+
+        <RadioButton
+            android:id="@+id/network_only"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NETWORK_ONLY" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Refresh" />
+
+    </RadioGroup>
+
 </LinearLayout>

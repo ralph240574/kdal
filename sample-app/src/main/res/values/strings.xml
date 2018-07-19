@@ -5,4 +5,6 @@
     <string name="tab_daily">15-Day</string>
     <string name="search_title">search</string>
     <string name="add_location">Add a Location first</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="action_settings">Settings</string>
 </resources>

@@ -96,7 +96,11 @@ data class V3Agg(
 
         @SerializedName(value = "v3-wx-observations-current")
         @Json(name = "v3-wx-observations-current")
-        val v3WxObservationsCurrent: V3WxObservationsCurrent?
+        val v3WxObservationsCurrent: V3WxObservationsCurrent?,
+
+        @SerializedName(value = "v3-wx-skiconditions")
+        @Json(name = "v3-wx-skiconditions")
+        val v3WxSkiconditions: V3WxSkiconditions?
 
 )
 

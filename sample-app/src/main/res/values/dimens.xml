@@ -11,5 +11,7 @@
     <dimen name="hourly_colum2_width">45dp</dimen>
     <dimen name="hourly_colum3_width">50dp</dimen>
     <dimen name="card_margin">16dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>
