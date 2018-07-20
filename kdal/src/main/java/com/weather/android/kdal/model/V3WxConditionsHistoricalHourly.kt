@@ -1,6 +1,6 @@
 package com.weather.android.kdal.model
 
-data class V3WxConditionsHistoricalHourly1day(
+data class V3WxConditionsHistoricalHourly(
         val cloudCeiling: List<Int?>,
         val dayOfWeek: List<String>,
         val dayOrNight: List<String>,
@@ -28,7 +28,7 @@ data class V3WxConditionsHistoricalHourly1day(
         val temperatureMin24Hour: List<Int?>,
         val temperatureWindChill: List<Int?>,
         val uvDescription: List<String?>,
-        val uvIndex: List<Int>,
+        val uvIndex: List<Int?>,
         val validTimeLocal: List<String>,
         val validTimeUtc: List<Int>,
         val visibility: List<Double?>,

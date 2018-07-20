@@ -1,7 +1,7 @@
 package com.weather.android.kdal.model
 
 
-data class V3WxConditionsHistoricalDailysummary30day(
+data class V3WxConditionsHistoricalDailysummary(
         val dayOfWeek: List<String>,
         val iconCodeDay: List<Int?>,
         val iconCodeNight: List<Int?>,

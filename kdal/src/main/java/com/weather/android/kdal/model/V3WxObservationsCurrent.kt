@@ -1,22 +1,22 @@
 package com.weather.android.kdal.model
 
 data class V3WxObservationsCurrent(
-            val cloudCeiling: Any?, // null
+            val cloudCeiling: Int?, // null
             val cloudCoverPhrase: String, // Partly Cloudy
             val dayOfWeek: String, // Monday
             val dayOrNight: String, // D
             val expirationTimeUtc: Int, // 1531160597
             val iconCode: Int, // 30
-            val obsQualifierCode: Any?, // null
-            val obsQualifierSeverity: Any?, // null
-            val precip24Hour: Double, // 0.09
+            val obsQualifierCode: String?, // null
+            val obsQualifierSeverity: Int?, // null
+            val precip24Hour: Double?, // 0.09
             val pressureAltimeter: Double, // 30.15
             val pressureChange: Double, // -0.02
             val pressureMeanSeaLevel: Double, // 1021.9
             val pressureTendencyCode: Int, // 2
             val pressureTendencyTrend: String, // Falling
             val relativeHumidity: Int, // 81
-            val snow24Hour: Double, // 0.0
+            val snow24Hour: Double?, // 0.0
             val sunriseTimeLocal: String, // 2018-07-09T06:33:18-0500
             val sunriseTimeUtc: Int, // 1531135998
             val sunsetTimeLocal: String, // 2018-07-09T20:27:48-0500
@@ -37,7 +37,7 @@ data class V3WxObservationsCurrent(
             val visibility: Double, // 9.000
             val windDirection: Int, // 170
             val windDirectionCardinal: String, // S
-            val windGust: Any?, // null
+            val windGust: Int?, // null
             val windSpeed: Int, // 3
             val wxPhraseLong: String, // Partly Cloudy
             val wxPhraseMedium: String, // Partly Cloudy

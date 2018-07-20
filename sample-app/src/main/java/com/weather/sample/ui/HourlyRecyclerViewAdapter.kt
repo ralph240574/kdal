@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.weather.android.kdal.app.R
-import com.weather.android.kdal.model.V3WxForecastHourly10day
+import com.weather.android.kdal.model.V3WxForecastHourly
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class HourlyRecyclerViewAdapter(private val v3WxForecastHourly10day: V3WxForecastHourly10day)//        TimeZone tz = DateParser.getTimeZone(v3WxForecastHourly10day.get(0));
+class HourlyRecyclerViewAdapter(private val v3WxForecastHourly10day: V3WxForecastHourly)//        TimeZone tz = DateParser.getTimeZone(v3WxForecastHourly10day.get(0));
 //        dateFormat.setTimeZone(tz);
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val dateFormat = SimpleDateFormat("HH:mm", Locale.US)

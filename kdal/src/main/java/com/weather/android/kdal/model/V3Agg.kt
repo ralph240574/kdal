@@ -64,23 +64,23 @@ data class V3Agg(
 
         @SerializedName(value = "v3-wx-conditions-historical-dailysummary-30day")
         @Json(name = "v3-wx-conditions-historical-dailysummary-30day")
-        val v3WxConditionsHistoricalDailysummary30day: V3WxConditionsHistoricalDailysummary30day?,
+        val v3WxConditionsHistoricalDailysummary30day: V3WxConditionsHistoricalDailysummary?,
 
         @SerializedName(value = "v3-wx-conditions-historical-hourly-1day")
         @Json(name = "v3-wx-conditions-historical-hourly-1day")
-        val v3WxConditionsHistoricalHourly1day: V3WxConditionsHistoricalHourly1day?,
+        val v3WxConditionsHistoricalHourly1day: V3WxConditionsHistoricalHourly?,
 
         @SerializedName(value = "v3-wx-forecast-daily-15day")
         @Json(name = "v3-wx-forecast-daily-15day")
-        val v3WxForecastDaily15day: V3WxForecastDaily15day?,
+        val v3WxForecastDaily15day: V3WxForecastDaily?,
 
         @SerializedName(value = "v3-wx-forecast-hourly-2day")
         @Json(name = "v3-wx-forecast-hourly-2day")
-        val V3WxForecastHourly2day: V3WxForecastHourly2day?,
+        val V3WxForecastHourly2day: V3WxForecastHourly?,
 
         @SerializedName(value = "v3-wx-forecast-hourly-10day")
         @Json(name = "v3-wx-forecast-hourly-10day")
-        val v3WxForecastHourly10day: V3WxForecastHourly10day?,
+        val v3WxForecastHourly10day: V3WxForecastHourly?,
 
         @SerializedName(value = "v3-wx-globalAirQuality")
         @Json(name = "v3-wx-globalAirQuality")
@@ -92,7 +92,7 @@ data class V3Agg(
 
         @SerializedName(value = "v3-wx-indices-pollen-historical-1day")
         @Json(name = "v3-wx-indices-pollen-historical-1day")
-        val v3WxIndicesPollenHistorical1day: V3WxIndicesPollenHistorical1day?,
+        val v3WxIndicesPollenHistorical1day: V3WxIndicesPollenHistorical?,
 
         @SerializedName(value = "v3-wx-observations-current")
         @Json(name = "v3-wx-observations-current")

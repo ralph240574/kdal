@@ -1,7 +1,7 @@
 package com.weather.android.kdal.model
 
 
-data class V3WxForecastHourly10day(
+data class V3WxForecastHourly(
         val cloudCover: List<Int>,
         val dayOfWeek: List<String>,
         val dayOrNight: List<String>,

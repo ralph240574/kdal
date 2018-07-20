@@ -1,22 +1,22 @@
 package com.weather.android.kdal.model
 
-data class V3WxForecastDaily15day(
+data class V3WxForecastDaily(
         val dayOfWeek: List<String>,
         val expirationTimeUtc: List<Int>,
         val moonPhase: List<String>,
         val moonPhaseCode: List<String>,
         val moonPhaseDay: List<Int>,
-        val moonriseTimeLocal: List<String>,
-        val moonriseTimeUtc: List<Any>,
-        val moonsetTimeLocal: List<String>,
-        val moonsetTimeUtc: List<Int>,
+        val moonriseTimeLocal: List<String?>,
+        val moonriseTimeUtc: List<String?>,
+        val moonsetTimeLocal: List<String?>,
+        val moonsetTimeUtc: List<Int?>,
         val narrative: List<String>,
         val qpf: List<Double>,
         val qpfSnow: List<Double>,
-        val sunriseTimeLocal: List<String>,
-        val sunriseTimeUtc: List<Int>,
-        val sunsetTimeLocal: List<String>,
-        val sunsetTimeUtc: List<Int>,
+        val sunriseTimeLocal: List<String?>,
+        val sunriseTimeUtc: List<Int?>,
+        val sunsetTimeLocal: List<String?>,
+        val sunsetTimeUtc: List<Int?>,
         val temperatureMax: List<Int>,
         val temperatureMin: List<Int>,
         val validTimeLocal: List<String>,
@@ -34,9 +34,9 @@ data class V3WxForecastDaily15day(
             val precipType: List<String>,
             val qpf: List<Double>,
             val qpfSnow: List<Double>,
-            val qualifierPhrase: List<Any>,
+            val qualifierPhrase: List<String?>,
             val relativeHumidity: List<Int>,
-            val snowRange: List<String>,
+            val snowRange: List<String?>,
             val temperature: List<Int>,
             val temperatureHeatIndex: List<Int>,
             val temperatureWindChill: List<Int>,
@@ -49,6 +49,6 @@ data class V3WxForecastDaily15day(
             val windPhrase: List<String>,
             val windSpeed: List<Int>,
             val wxPhraseLong: List<String>,
-            val wxPhraseShort: List<String>
+            val wxPhraseShort: List<String?>
     )
 }

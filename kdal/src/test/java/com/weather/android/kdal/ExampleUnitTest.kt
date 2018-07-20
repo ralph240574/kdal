@@ -5,6 +5,7 @@ import io.reactivex.rxkotlin.subscribeBy
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
+import java.io.File
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -15,7 +16,7 @@ class ExampleUnitTest {
 
     val apiKey = "1941878e0eef4b4c81878e0eeffb4cc2"
 
-    var v3Repo = V3Repo(apiKey = apiKey, baseUrl = "http://api.weather.com")
+    var v3Repo = V3Repo(apiKey = apiKey, baseUrl = "http://api.weather.com", cacheDir = File("./cache"))
 
     val products = setOf(
 
