@@ -1,6 +1,5 @@
 package com.weather.android.kdal
 
-import android.util.Log
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.weather.android.kdal.Product.Companion.asString
@@ -30,25 +29,19 @@ enum class Units(val unit: Char) {
 
 class V3Repo constructor(
         val apiKey: String,
-        val cacheDir: File = File("./cache"),
+        val cacheDir: File,
         val baseUrl: String = BASE_URL,
         val cacheSizeInByte: Long = CACHE_SIZE_IN_BYTE,
         val maxCacheAgeInSec: Int = MAX_CACHE_AGE_IN_SEC,
         val loggingEnabled: Boolean = false) {
 
-    init {
-        Log.d("V3Repo", "in constructor")
-    }
-
 
     enum class Mode {
-
         OFFLINE, // only read from local cache
         CACHE_FIRST, // use cache if available and valid, otherwise use network
         CACHE_AND_NETWORK, // get cache first then network
         NETWORK_FIRST, //
         NETWORK_ONLY // do not use cache use only network
-
     }
 
     val repo: V3AggInterface = Retrofit.Builder()

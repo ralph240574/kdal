@@ -36,8 +36,6 @@ enum class Product(val productName: String, val queryParameter: Set<QueryParamet
     V3_WX_OBSERVATIONS_CURRENT("v3-wx-observations-current"),
     V3_WX_SKICONDITIONS("V3WxSkiconditions");
 
-    //SKI DATA??
-
     override fun toString(): String = productName
 
 
