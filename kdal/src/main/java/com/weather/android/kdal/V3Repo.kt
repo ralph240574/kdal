@@ -1,7 +1,6 @@
 package com.weather.android.kdal
 
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+//import retrofit2.converter.moshi.MoshiConverterFactory
 import com.weather.android.kdal.Product.Companion.asString
 import com.weather.android.kdal.model.V3Agg
 import com.weather.android.kdal.network.ApiKeyInterceptor
@@ -14,7 +13,7 @@ import okhttp3.Cache
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -47,8 +46,8 @@ class V3Repo constructor(
     val repo: V3AggInterface = Retrofit.Builder()
             .baseUrl(baseUrl)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(moshiConverterFactory())
-//                .addConverterFactory(GsonConverterFactory.create())
+//            .addConverterFactory(moshiConverterFactory())
+            .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient(loggingEnabled))
             .build().create(V3AggInterface::class.java)
 
@@ -64,9 +63,9 @@ class V3Repo constructor(
         return builder.build()
     }
 
-
-    private fun moshiConverterFactory() =
-            MoshiConverterFactory.create(Moshi.Builder().add(KotlinJsonAdapterFactory()).build())
+//
+//    private fun moshiConverterFactory() =
+//            MoshiConverterFactory.create(Moshi.Builder().add(KotlinJsonAdapterFactory()).build())
 
 
     companion object {
@@ -105,16 +104,13 @@ class V3Repo constructor(
 
         val fromNetwork = getV3AggFromNetwork(products, latLng = latLng)
 
-        val observable: Observable<V3Agg> =
-                when (setMode) {
-                    Mode.OFFLINE -> fromCache.toObservable()
-                    Mode.CACHE_FIRST -> fromCache.onErrorResumeNext(fromNetwork).toObservable()
-                    Mode.CACHE_AND_NETWORK -> Observable.concat(fromCache.toObservable().onErrorResumeNext(Observable.empty()), fromNetwork.toObservable())
-                    Mode.NETWORK_FIRST -> Observable.concat(fromNetwork.toObservable().onErrorResumeNext(Observable.empty()), fromCache.toObservable())
-                    Mode.NETWORK_ONLY -> fromNetwork.toObservable()
-                }
-
-        return observable
+        return when (setMode) {
+            Mode.OFFLINE -> fromCache.toObservable()
+            Mode.CACHE_FIRST -> fromCache.onErrorResumeNext(fromNetwork).toObservable()
+            Mode.CACHE_AND_NETWORK -> Observable.concat(fromCache.toObservable().onErrorResumeNext(Observable.empty()), fromNetwork.toObservable())
+            Mode.NETWORK_FIRST -> fromNetwork.toObservable().onErrorResumeNext(fromCache.toObservable())
+            Mode.NETWORK_ONLY -> fromNetwork.toObservable()
+        }
 
     }
 
