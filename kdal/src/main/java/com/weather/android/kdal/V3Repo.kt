@@ -75,6 +75,11 @@ class V3Repo constructor(
         val MAX_CACHE_AGE_IN_SEC = 4 * 60 * 60
 
         val CACHE_SIZE_IN_BYTE = 512 * 1024L
+
+        @JvmStatic
+        fun newV3Repo(apiKey: String, cacheDir: File): V3Repo {
+            return V3Repo(apiKey, cacheDir)
+        }
     }
 
     @Volatile

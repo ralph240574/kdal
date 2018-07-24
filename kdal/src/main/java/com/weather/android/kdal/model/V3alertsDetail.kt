@@ -29,7 +29,7 @@ data class V3alertsDetail(
             val effectiveTimeLocalTimeZone: String?, // null
             val expireTimeLocal: String, // 2018-07-09T21:00:00-05:00
             val expireTimeLocalTimeZone: String, // CDT
-            val expireTimeUTC: Int, // 1531188000
+            val expireTimeUTC: Long, // 1531188000
             val onsetTimeLocal: String?, // nullarea
             val onsetTimeLocalTimeZone: String?, // null
             val flood: Flood?, // null
@@ -49,7 +49,7 @@ data class V3alertsDetail(
             val issueTimeLocal: String, // 2018-07-08T14:53:00-05:00
             val issueTimeLocalTimeZone: String, // CDT
             val identifier: String, // 17b79adadd31ceac001c92c127728cf0
-            val processTimeUTC: Int, // 1531079609
+            val processTimeUTC: Long, // 1531079609
             val texts: List<Text>,
             val polygon: Polygon?, // null
             val synopsis: String? // null

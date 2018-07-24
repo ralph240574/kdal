@@ -5,7 +5,7 @@ data class V2idxRunDaypart15(
         val runWeatherIndex12hour: RunWeatherIndex12hour
 ) {
     data class RunWeatherIndex12hour(
-            val fcstValid: List<Int>,
+            val fcstValid: List<Long>,
             val fcstValidLocal: List<String>,
             val dayInd: List<String>,
             val num: List<Int>,
@@ -22,7 +22,7 @@ data class V2idxRunDaypart15(
             val version: String, // 1
             val latitude: Double, // 29.19
             val longitude: Double, // -96.27
-            val expireTimeGmt: Int, // 1531163838
+            val expireTimeGmt: Long, // 1531163838
             val statusCode: Int // 200
     )
 }

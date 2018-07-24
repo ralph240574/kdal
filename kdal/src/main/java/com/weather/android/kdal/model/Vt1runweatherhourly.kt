@@ -1,7 +1,7 @@
 package com.weather.android.kdal.model
 
 data class Vt1runweatherhourly(
-        val fcstValid: List<Int?>,
+        val fcstValid: List<Long?>,
         val fcstValidLocal: List<String?>,
         val dow: List<String?>,
         val dayInd: List<String?>,

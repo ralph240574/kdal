@@ -18,7 +18,7 @@ data class V3WxGlobalAirQuality(
             val primaryPollutant: String, // PM2.5
             val pollutants: Pollutants,
             val messages: Messages,
-            val expireTimeGmt: Int // 1531162800
+            val expireTimeGmt: Long // 1531162800
     ) {
         data class Messages(
                 @SerializedName(value = "Sensitive Group")

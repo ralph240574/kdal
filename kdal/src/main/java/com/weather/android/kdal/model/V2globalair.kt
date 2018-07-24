@@ -16,7 +16,7 @@ data class V2globalair(
             val key: String, // u09tvnh3
             @SerializedName(value = "expire_time_gmt")
             @Json(name = "expire_time_gmt")
-            val expireTimeGmt: Int, // 1529683129
+            val expireTimeGmt: Long, // 1529683129
             @SerializedName(value = "status_code")
             @Json(name = "status_code")
             val statusCode: Int // 200

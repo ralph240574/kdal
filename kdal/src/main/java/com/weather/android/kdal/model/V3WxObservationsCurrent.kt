@@ -5,7 +5,7 @@ data class V3WxObservationsCurrent(
             val cloudCoverPhrase: String, // Partly Cloudy
             val dayOfWeek: String, // Monday
             val dayOrNight: String, // D
-            val expirationTimeUtc: Int, // 1531160597
+            val expirationTimeUtc: Long, // 1531160597
             val iconCode: Int, // 30
             val obsQualifierCode: String?, // null
             val obsQualifierSeverity: Int?, // null
@@ -18,9 +18,9 @@ data class V3WxObservationsCurrent(
             val relativeHumidity: Int, // 81
             val snow24Hour: Double?, // 0.0
             val sunriseTimeLocal: String, // 2018-07-09T06:33:18-0500
-            val sunriseTimeUtc: Int, // 1531135998
+            val sunriseTimeUtc: Long, // 1531135998
             val sunsetTimeLocal: String, // 2018-07-09T20:27:48-0500
-            val sunsetTimeUtc: Int, // 1531186068
+            val sunsetTimeUtc: Long, // 1531186068
             val temperature: Int, // 79
             val temperatureChange24Hour: Int, // -1
             val temperatureDewPoint: Int, // 72
@@ -33,7 +33,7 @@ data class V3WxObservationsCurrent(
             val uvDescription: String, // Extreme
             val uvIndex: Int, // 11
             val validTimeLocal: String, // 2018-07-09T13:13:17-0500
-            val validTimeUtc: Int, // 1531159997
+            val validTimeUtc: Long, // 1531159997
             val visibility: Double, // 9.000
             val windDirection: Int, // 170
             val windDirectionCardinal: String, // S

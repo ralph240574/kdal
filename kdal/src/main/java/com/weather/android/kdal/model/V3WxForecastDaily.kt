@@ -2,25 +2,25 @@ package com.weather.android.kdal.model
 
 data class V3WxForecastDaily(
         val dayOfWeek: List<String>,
-        val expirationTimeUtc: List<Int>,
+        val expirationTimeUtc: List<Long>,
         val moonPhase: List<String>,
         val moonPhaseCode: List<String>,
         val moonPhaseDay: List<Int>,
         val moonriseTimeLocal: List<String?>,
         val moonriseTimeUtc: List<String?>,
         val moonsetTimeLocal: List<String?>,
-        val moonsetTimeUtc: List<Int?>,
+        val moonsetTimeUtc: List<Long?>,
         val narrative: List<String>,
         val qpf: List<Double>,
         val qpfSnow: List<Double>,
         val sunriseTimeLocal: List<String?>,
-        val sunriseTimeUtc: List<Int?>,
+        val sunriseTimeUtc: List<Long?>,
         val sunsetTimeLocal: List<String?>,
-        val sunsetTimeUtc: List<Int?>,
+        val sunsetTimeUtc: List<Long?>,
         val temperatureMax: List<Int>,
         val temperatureMin: List<Int>,
         val validTimeLocal: List<String>,
-        val validTimeUtc: List<Int>,
+        val validTimeUtc: List<Long>,
         val daypart: List<Daypart>
 ) {
     data class Daypart(

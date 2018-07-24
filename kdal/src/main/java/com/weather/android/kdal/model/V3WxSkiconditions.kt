@@ -9,7 +9,7 @@ data class V3WxSkiconditions(
         val countryName: String?, // Chile
         val event: String?, // null
         val expireTimeLocal: String, // 2018-07-19T16:53:11-04:00
-        val expireTimeUtc: Int, // 1532033591
+        val expireTimeUtc: Long, // 1532033591
         val hasNightSkiing: String, // Y
         val hasNordic: String, // Y
         val hasSkiing: String, // Y

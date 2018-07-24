@@ -10,12 +10,12 @@ data class V2idxPollenDaypart15(
             val version: String, // 1
             val latitude: Double, // 25.78
             val longitude: Double, // -80.29
-            val expireTimeGmt: Int, // 1531160279
+            val expireTimeGmt: Long, // 1531160279
             val statusCode: Int // 200
     )
 
     data class PollenForecast12hour(
-            val fcstValid: List<Int>,
+            val fcstValid: List<Long>,
             val fcstValidLocal: List<String>,
             val dayInd: List<String>,
             val num: List<Int>,

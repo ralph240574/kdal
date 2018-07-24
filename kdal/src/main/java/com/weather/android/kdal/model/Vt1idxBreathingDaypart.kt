@@ -5,7 +5,7 @@ data class Vt1idxBreathingDaypart(
         val night: DayOrNight
 ) {
     data class DayOrNight(
-            val fcstValid: List<Int>,
+            val fcstValid: List<Long>,
             val fcstValidLocal: List<String>,
             val dayInd: List<String>,
             val num: List<Int>,

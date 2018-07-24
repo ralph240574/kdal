@@ -34,7 +34,7 @@ data class V3alertsHeadlines(
             val effectiveTimeLocalTimeZone: String?, // CEST
             val expireTimeLocal: String, // 2018-06-22T20:00:00+02:00
             val expireTimeLocalTimeZone: String, // CEST
-            val expireTimeUTC: Int, // 1529690400
+            val expireTimeUTC: Long, // 1529690400
             val onsetTimeLocal: String?, // 2018-06-22T08:11:00+02:00
             val onsetTimeLocalTimeZone: String?, // CEST
             val flood: Flood?, // null
@@ -54,7 +54,7 @@ data class V3alertsHeadlines(
             val issueTimeLocal: String, // 2018-06-22T18:02:51+02:00
             val issueTimeLocalTimeZone: String, // CEST
             val identifier: String, // 2437604aba3151beba43f44343bb2668
-            val processTimeUTC: Int // 1529683875
+            val processTimeUTC: Long // 1529683875
     ) {
         data class Category(
                 val category: String, // Met

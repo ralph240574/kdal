@@ -5,7 +5,7 @@ data class V2idxBreathingDaypart15(
         val breathingIndex12hour: BreathingIndex12hour
 ) {
     data class BreathingIndex12hour(
-            val fcstValid: List<Int>,
+            val fcstValid: List<Long>,
             val fcstValidLocal: List<String>,
             val dayInd: List<String>,
             val num: List<Int>,
@@ -20,7 +20,7 @@ data class V2idxBreathingDaypart15(
             val version: String, // 1
             val latitude: Double, // 29.19
             val longitude: Double, // -96.27
-            val expireTimeGmt: Int, // 1531163838
+            val expireTimeGmt: Long, // 1531163838
             val statusCode: Int // 200
     )
 }

@@ -13,7 +13,7 @@ data class V2fcstintraday3(
             val classX: String, // fod_long_range_intraday
             @SerializedName(value = "expire_time_gmt")
             @Json(name = "expire_time_gmt")
-            val expireTimeGmt: Int, // 1529688903
+            val expireTimeGmt: Long, // 1529688903
             @SerializedName(value = "fcst_valid")
             @Json(name = "fcst_valid")
             val fcstValid: Int, // 1529971200
@@ -78,7 +78,7 @@ data class V2fcstintraday3(
             val units: String, // e
             @SerializedName(value = "expire_time_gmt")
             @Json(name = "expire_time_gmt")
-            val expireTimeGmt: Int, // 1529688903
+            val expireTimeGmt: Long, // 1529688903
             @SerializedName(value = "status_code")
             @Json(name = "status_code")
             val statusCode: Int // 200

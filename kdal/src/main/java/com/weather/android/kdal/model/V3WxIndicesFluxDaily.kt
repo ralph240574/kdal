@@ -1,7 +1,7 @@
 package com.weather.android.kdal.model
 
 data class V3WxIndicesFluxDaily15day(
-        val expirationTimeUtc: List<Int>,
+        val expirationTimeUtc: List<Long>,
         val fluxPrecipitationScore: List<Double>,
         val fluxPrecipitationType: List<String?>,
         val fluxTemperatureMaxScore: List<Double>,
@@ -9,5 +9,5 @@ data class V3WxIndicesFluxDaily15day(
         val fluxTemperatureMinScore: List<Double>,
         val fluxTemperatureMinType: List<String?>,
         val validTimeLocal: List<String>,
-        val validTimeUtc: List<Int>
+        val validTimeUtc: List<Long>
 )

@@ -11,7 +11,7 @@ data class V3WxConditionsHistoricalDailysummary(
         val temperatureMax: List<Int?>,
         val temperatureMin: List<Int?>,
         val validTimeLocal: List<String>,
-        val validTimeUtc: List<Int>,
+        val validTimeUtc: List<Long>,
         val wxPhraseLongDay: List<String?>,
         val wxPhraseLongNight: List<String?>
 )
