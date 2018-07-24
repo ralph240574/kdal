@@ -14,6 +14,7 @@ import okhttp3.Cache
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.File
 import java.text.SimpleDateFormat
@@ -33,7 +34,8 @@ class V3Repo constructor(
         val baseUrl: String = BASE_URL,
         val cacheSizeInByte: Long = CACHE_SIZE_IN_BYTE,
         val maxCacheAgeInSec: Int = MAX_CACHE_AGE_IN_SEC,
-        val loggingEnabled: Boolean = false) {
+        val loggingEnabled: Boolean = false)
+    : IV3Repo {
 
 
     enum class Mode {
@@ -47,8 +49,8 @@ class V3Repo constructor(
     val repo: V3AggInterface = Retrofit.Builder()
             .baseUrl(baseUrl)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(moshiConverterFactory())
-//                .addConverterFactory(GsonConverterFactory.create())
+//            .addConverterFactory(moshiConverterFactory())
+            .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient(loggingEnabled))
             .build().create(V3AggInterface::class.java)
 
@@ -95,10 +97,10 @@ class V3Repo constructor(
      * Returns Observable with 1 or 2 items, the first one will be the cached data,
      * the second one data from the network, or error if no network and no cache
      */
-    fun getV3Agg(products: Set<Product>,
-                 latLng: LatLng = this.latLng,
-                 maxAgeResponseCache: Int = MAX_CACHE_AGE_IN_SEC,
-                 setMode: Mode = mode)
+    override fun getV3Agg(products: Set<Product>,
+                          latLng: LatLng,
+                          maxAgeResponseCache: Int,
+                          setMode: Mode)
             : Observable<V3Agg> {
 
         val fromCache = getV3AggFromCache(products, latLng = latLng, maxAgeResponse = maxAgeResponseCache)
@@ -110,7 +112,7 @@ class V3Repo constructor(
                     Mode.OFFLINE -> fromCache.toObservable()
                     Mode.CACHE_FIRST -> fromCache.onErrorResumeNext(fromNetwork).toObservable()
                     Mode.CACHE_AND_NETWORK -> Observable.concat(fromCache.toObservable().onErrorResumeNext(Observable.empty()), fromNetwork.toObservable())
-                    Mode.NETWORK_FIRST -> Observable.concat(fromNetwork.toObservable().onErrorResumeNext(Observable.empty()), fromCache.toObservable())
+                    Mode.NETWORK_FIRST -> fromNetwork.toObservable().onErrorResumeNext(fromCache.toObservable())
                     Mode.NETWORK_ONLY -> fromNetwork.toObservable()
                 }
 
@@ -121,9 +123,9 @@ class V3Repo constructor(
     /**
      * Returns Single with data from network
      */
-    fun getV3AggFromNetwork(
+    override fun getV3AggFromNetwork(
             products: Set<Product>,
-            latLng: LatLng = this.latLng)
+            latLng: LatLng)
             : Single<V3Agg> {
 
         val queryParameters: Set<QueryParameter> = getQueryParameters(products)
@@ -141,9 +143,9 @@ class V3Repo constructor(
     /**
      *  This will return the cache if it is less than maxAgeResponse old, otherwise it will throw an error
      */
-    fun getV3AggFromCache(products: Set<Product>,
-                          latLng: LatLng = this.latLng,
-                          maxAgeResponse: Int = MAX_CACHE_AGE_IN_SEC)
+    override fun getV3AggFromCache(products: Set<Product>,
+                                   latLng: LatLng,
+                                   maxAgeResponse: Int)
             : Single<V3Agg> {
 
         val queryParameters: Set<QueryParameter> = getQueryParameters(products)
