@@ -1,13 +1,14 @@
 package com.weather.android.kdal
 
 import com.weather.android.kdal.model.V3Agg
+import com.weather.android.kdal.util.formatHHmm
+import com.weather.android.kdal.util.getTimeOffset
+import com.weather.android.kdal.util.toDate
 import io.reactivex.rxkotlin.subscribeBy
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import java.io.File
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.reflect.full.memberProperties
 
@@ -71,16 +72,31 @@ class ExampleUnitTest {
     @Test
     fun parseDate() {
 
-        val s = "2018-07-03T10:00:00-0400"
 
-        val dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZ"
+        val sunriseTimeLocal = "2018-07-25T06:43:56-0400"
+        val sunriseTimeUtc = 1532515436L
+        val sunsetTimeLocal = "2018-07-25T20:43:11-0400"
+        val sunsetTimeUtc = 1532565791L
 
-        val date = LocalDateTime.parse(s, DateTimeFormatter.ofPattern(dateFormat, Locale.US))
 
-        println(date)
+        println(sunriseTimeLocal.toDate())
+        println(Date(sunriseTimeUtc * 1000L))
+        println(sunriseTimeLocal.formatHHmm(true))
 
-        println(date.toLocalTime())
+        println(sunsetTimeLocal.toDate())
+        println(Date(sunsetTimeUtc * 1000L))
+        println(sunsetTimeLocal.formatHHmm())
+        println(sunsetTimeLocal.formatHHmm(true))
 
+        println("".toDate())
+
+        println("".formatHHmm())
+
+
+        val s :String? = null
+
+
+        println(s.getTimeOffset())
     }
 
 

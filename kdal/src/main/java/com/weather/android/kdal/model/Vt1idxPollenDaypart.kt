@@ -1,10 +1,10 @@
 package com.weather.android.kdal.model
 
 data class Vt1idxPollenDaypart(
-        val day: DayPart,
-        val night: DayPart
+        val day: DayOrNight,
+        val night: DayOrNight
 ) {
-    data class DayPart(
+    data class DayOrNight(
             val fcstValid: List<Long?>,
             val fcstValidLocal: List<String?>,
             val dayInd: List<String?>,

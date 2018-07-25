@@ -41,6 +41,9 @@ dependencies {
     api 'com.squareup.moshi:moshi-kotlin:1.6.0'
 //    api 'com.squareup.retrofit2:converter-moshi:2.3.0'
 
+//    consider this for date time stuff, backport of Java 8 timestuff
+//    api 'com.jakewharton.threetenabp:threetenabp:1.1.0'
+
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.apache.directory.studio:org.apache.commons.io:2.4'
 

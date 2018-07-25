@@ -104,6 +104,8 @@ data class V3Agg(
 
 )
 
+
+//TODO implement
 fun contains(prod: Product): Boolean {
     return false
 }

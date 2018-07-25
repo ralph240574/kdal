@@ -32,7 +32,7 @@ class V3Repo constructor(
         val baseUrl: String = BASE_URL,
         val cacheSizeInByte: Long = CACHE_SIZE_IN_BYTE,
         val maxCacheAgeInSec: Int = MAX_CACHE_AGE_IN_SEC,
-        val loggingEnabled: Boolean = false) {
+        loggingEnabled: Boolean = false) {
 
 
     enum class Mode {
@@ -77,8 +77,8 @@ class V3Repo constructor(
         val CACHE_SIZE_IN_BYTE = 512 * 1024L
 
         @JvmStatic
-        fun newV3Repo(apiKey: String, cacheDir: File): V3Repo {
-            return V3Repo(apiKey, cacheDir)
+        fun newV3Repo(apiKey: String, cacheDir: File, logging: Boolean): V3Repo {
+            return V3Repo(apiKey, cacheDir, loggingEnabled = logging)
         }
     }
 
