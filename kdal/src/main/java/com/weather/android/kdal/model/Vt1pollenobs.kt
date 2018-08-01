@@ -1,5 +1,8 @@
 package com.weather.android.kdal.model
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class Vt1pollenobs(
         val reportDate: String, // 2018-06-22T10:43:00Z
         val totalPollenCount: Int?, // null

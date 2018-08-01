@@ -1,6 +1,8 @@
 package com.weather.android.kdal.model
 
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class V3WxForecastHourly(
         val cloudCover: List<Int>,
         val dayOfWeek: List<String>,
@@ -25,7 +27,7 @@ data class V3WxForecastHourly(
         val visibility: List<Double>,
         val windDirection: List<Int>,
         val windDirectionCardinal: List<String>,
-        val windGust: List<Int?>,
+        val windGust: List<Integer?>,
         val windSpeed: List<Int>,
         val wxPhraseLong: List<String>,
         val wxPhraseShort: List<String?>,

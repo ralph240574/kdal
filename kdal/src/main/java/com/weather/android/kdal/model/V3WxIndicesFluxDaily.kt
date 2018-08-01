@@ -1,5 +1,8 @@
 package com.weather.android.kdal.model
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class V3WxIndicesFluxDaily15day(
         val expirationTimeUtc: List<Long>,
         val fluxPrecipitationScore: List<Double>,

@@ -1,5 +1,8 @@
 package com.weather.android.kdal.model
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class Vt1dailyforecast(
         val validDate: List<String>,
         val sunrise: List<String>,

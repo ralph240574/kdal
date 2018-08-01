@@ -1,5 +1,8 @@
 package com.weather.android.kdal.model
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class V2idxBreathingDaypart15(
         val metadata: Metadata,
         val breathingIndex12hour: BreathingIndex12hour

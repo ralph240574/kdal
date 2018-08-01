@@ -1,5 +1,8 @@
 package com.weather.android.kdal.model
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class Vt1observation(
         val altimeter: Double, // 29.89
         val barometerTrend: String, // Falling

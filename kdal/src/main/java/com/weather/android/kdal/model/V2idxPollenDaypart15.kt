@@ -1,5 +1,8 @@
 package com.weather.android.kdal.model
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class V2idxPollenDaypart15(
         val metadata: Metadata,
         val pollenForecast12hour: PollenForecast12hour

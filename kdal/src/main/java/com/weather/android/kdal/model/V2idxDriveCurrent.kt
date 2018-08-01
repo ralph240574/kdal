@@ -1,6 +1,8 @@
 package com.weather.android.kdal.model
 
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class V2idxDriveCurrent(
         val metadata: Metadata,
         val drivingDifficultyIndexCurrent: DrivingDifficultyIndexCurrent

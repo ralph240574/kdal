@@ -1,5 +1,8 @@
 package com.weather.android.kdal.model
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class V3alertsHeadlines(
         val metadata: Metadata,
         val alerts: List<Alert>

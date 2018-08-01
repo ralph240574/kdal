@@ -1,6 +1,8 @@
 package com.weather.android.kdal.model
 
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Vt1nowcast(
         val icon: Int, // 38
         val narrative128Char: String, // Sctd t-storms after 4:15pm. Winds NE at 5 to 10 mph. Chance of rain 60%.

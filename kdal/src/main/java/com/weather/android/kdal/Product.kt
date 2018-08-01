@@ -34,15 +34,11 @@ enum class Product(val productName: String, val queryParameter: Set<QueryParamet
     V3_WX_INDICES_FLUX_DAILY_15_DAY("v3-wx-indices-flux-daily-15day", setOf(UNITS)),
     V3_WX_INDICES_POLLEN_HISTORICAL_1DAY("v3-wx-indices-pollen-historical-1day", setOf(LANGUAGE, DATE_YYYYMMdd)),
     V3_WX_OBSERVATIONS_CURRENT("v3-wx-observations-current"),
-    V3_WX_SKICONDITIONS("V3WxSkiconditions");
+    V3_WX_SKICONDITIONS("V3WxSkiconditions"),
+    V2_IDX_MOSQUITO_DAILY_3("v2idxMosquitoDaily3", setOf(LANGUAGE)),
+    V3_LOCATION_POINT("v3-location-point", setOf(LANGUAGE));
 
-
-//    v2idxMosquitoDaily3
-
-    //v3-location-point
-
-//    v3-location-search
-
+//    v3-location-search, this will not work as a standalone in the agg call
 
 
     override fun toString(): String = productName

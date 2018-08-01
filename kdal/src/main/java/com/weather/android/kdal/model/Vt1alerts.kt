@@ -1,6 +1,8 @@
 package com.weather.android.kdal.model
 
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Vt1alerts(
         val issueTime: List<String>,
         val effectiveTime: List<String?>,

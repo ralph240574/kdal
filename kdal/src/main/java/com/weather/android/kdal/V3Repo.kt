@@ -1,6 +1,6 @@
 package com.weather.android.kdal
 
-//import retrofit2.converter.moshi.MoshiConverterFactory
+import com.squareup.moshi.Moshi
 import com.weather.android.kdal.Product.Companion.asString
 import com.weather.android.kdal.model.V3Agg
 import com.weather.android.kdal.network.ApiKeyInterceptor
@@ -13,16 +13,17 @@ import okhttp3.Cache
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
 enum class Units(val unit: Char) {
 
-    ENGLISH('e'), METERIC('m'), HYBRID('h');
+    ENGLISH('e'), METRIC('m'), HYBRID('h');
 
     override fun toString(): String = unit.toString()
+
 }
 
 
@@ -46,8 +47,9 @@ class V3Repo constructor(
     val repo: V3AggInterface = Retrofit.Builder()
             .baseUrl(baseUrl)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-//            .addConverterFactory(moshiConverterFactory())
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(moshiConverterFactory())
+//            .addConverterFactory(GsonConverterFactory.create())
+
             .client(okHttpClient(loggingEnabled))
             .build().create(V3AggInterface::class.java)
 
@@ -63,9 +65,9 @@ class V3Repo constructor(
         return builder.build()
     }
 
-//
-//    private fun moshiConverterFactory() =
-//            MoshiConverterFactory.create(Moshi.Builder().add(KotlinJsonAdapterFactory()).build())
+
+    private fun moshiConverterFactory() =
+            MoshiConverterFactory.create(Moshi.Builder().build())
 
 
     companion object {

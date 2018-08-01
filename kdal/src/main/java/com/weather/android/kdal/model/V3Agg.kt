@@ -2,10 +2,12 @@ package com.weather.android.kdal.model
 
 import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 import com.weather.android.kdal.Product
 
 //TODO datestamp of retrieval
 
+@JsonClass(generateAdapter = true)
 data class V3Agg(
 
         val id: String, // 33.92,-84.34
@@ -58,6 +60,8 @@ data class V3Agg(
 
         val v2idxPollenDaypart15: V2idxPollenDaypart15?,
 
+        val v2idxMosquitoDaily3: V2idxMosquitoDaily3?,
+
         val v3alertsDetail: V3alertsDetail?,
 
         val v3alertsHeadlines: V3alertsHeadlines?,
@@ -100,7 +104,11 @@ data class V3Agg(
 
         @SerializedName(value = "v3-wx-skiconditions")
         @Json(name = "v3-wx-skiconditions")
-        val v3WxSkiconditions: V3WxSkiconditions?
+        val v3WxSkiconditions: V3WxSkiconditions?,
+
+        @SerializedName("v3-location-point")
+        @Json(name = "v3-location-point")
+        val v3LocationPoint: V3LocationPoint?
 
 )
 

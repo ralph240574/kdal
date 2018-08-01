@@ -1,5 +1,8 @@
 package com.weather.android.kdal.model
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class Vt1contentMode(
         val mode: String, // normal
         val effectiveDateTime: String, // 2017-09-08T00:00:00+00:00

@@ -2,7 +2,9 @@ package com.weather.android.kdal.model
 
 import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class V2globalair(
         val metadata: Metadata,
         val globalairquality: List<Globalairquality>

@@ -15,7 +15,7 @@ interface V3AggInterface {
                             @Query("date") date: String?,
                             @Query("scale") scale: String?,
                             @Query("geocode") geocode: String,
-                            @Query("units") units: Units?)
+                            @Query("units") unit: Units?)
             : Single<V3Agg>
 
     @GET("v3/aggcommon/{path}?format=json")
@@ -25,7 +25,7 @@ interface V3AggInterface {
                           @Query("date") date: String?,
                           @Query("scale") scale: String?,
                           @Query("geocode") geocode: String,
-                          @Query("units") units: Units?)
+                          @Query("units") unit: Units?)
             : Single<V3Agg>
 
 

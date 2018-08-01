@@ -1,5 +1,8 @@
 package com.weather.android.kdal.model
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class Vt1idxBreathingDaypart(
         val day: DayOrNight,
         val night: DayOrNight

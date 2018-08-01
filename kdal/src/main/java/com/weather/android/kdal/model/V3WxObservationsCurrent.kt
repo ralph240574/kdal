@@ -1,5 +1,8 @@
 package com.weather.android.kdal.model
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class V3WxObservationsCurrent(
             val cloudCeiling: Int?, // null
             val cloudCoverPhrase: String, // Partly Cloudy
