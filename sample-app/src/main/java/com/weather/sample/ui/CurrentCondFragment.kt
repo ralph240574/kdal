@@ -30,6 +30,34 @@ class CurrentCondFragment : ContentFragment() {
         item_feels.text = ("feels: ${v3Agg.v3WxObservationsCurrent?.temperatureFeelsLike} F");
         item_phrase.text = (v3Agg.vt1wwir?.tersePhrase);
         item_wwir.text = (v3Agg.vt1wwir?.phrase);
+
+
+        val tides = v3Agg.vt1currentTides
+        tides?.type?.forEach {
+            Log.d(TAG, "type: ${it}")
+        }
+        tides?.time?.forEach {
+            Log.d(TAG, "time: ${it}")
+        }
+        tides?.height?.forEach {
+            Log.d(TAG, "height: ${it}")
+        }
+
+val v3history = v3Agg.v3WxConditionsHistoricalDailysummary30day
+
+
+        v3history?.iconCodeDay?.forEach {
+            Log.d(TAG, "iconcodeDay: ${it}")
+        }
+
+        v3history?.validTimeUtc?.forEach {
+            Log.d(TAG, "utc: ${it}")
+
+        }
+
+
+
+
     }
 
 

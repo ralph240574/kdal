@@ -1,8 +1,6 @@
 package com.weather.android.kdal.model
 
-import com.squareup.moshi.JsonClass
-
-@JsonClass(generateAdapter = true)
+//@JsonClass(generateAdapter = true)
 data class V3WxForecastHourly(
         val cloudCover: List<Int>,
         val dayOfWeek: List<String>,
@@ -27,9 +25,39 @@ data class V3WxForecastHourly(
         val visibility: List<Double>,
         val windDirection: List<Int>,
         val windDirectionCardinal: List<String>,
-        val windGust: List<Integer?>,
+        val windGust: List<Int?>,
         val windSpeed: List<Int>,
         val wxPhraseLong: List<String>,
         val wxPhraseShort: List<String?>,
         val wxSeverity: List<Int>
-)
+) {
+    fun validate() {
+        cloudCover.validateNoNullsInList()
+        dayOfWeek.validateNoNullsInList()
+        dayOrNight.validateNoNullsInList()
+        expirationTimeUtc.validateNoNullsInList()
+        iconCode.validateNoNullsInList()
+        iconCodeExtend.validateNoNullsInList()
+        precipChance.validateNoNullsInList()
+        precipType.validateNoNullsInList()
+        pressureMeanSeaLevel.validateNoNullsInList()
+        qpf.validateNoNullsInList()
+        qpfSnow.validateNoNullsInList()
+        relativeHumidity.validateNoNullsInList()
+        temperature.validateNoNullsInList()
+        temperatureFeelsLike.validateNoNullsInList()
+        temperatureHeatIndex.validateNoNullsInList()
+        temperatureWindChill.validateNoNullsInList()
+        uvDescription.validateNoNullsInList()
+        uvIndex.validateNoNullsInList()
+        validTimeLocal.validateNoNullsInList()
+        validTimeUtc.validateNoNullsInList()
+        visibility.validateNoNullsInList()
+        windDirection.validateNoNullsInList()
+        windDirectionCardinal.validateNoNullsInList()
+        windSpeed.validateNoNullsInList()
+        wxPhraseLong.validateNoNullsInList()
+        wxPhraseShort.validateNoNullsInList()
+        wxSeverity.validateNoNullsInList()
+    }
+}

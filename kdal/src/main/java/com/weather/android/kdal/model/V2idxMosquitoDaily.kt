@@ -3,7 +3,7 @@ package com.weather.android.kdal.model
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class V2idxMosquitoDaily3(
+data class V2idxMosquitoDaily(
         val metadata: Metadata,
         val mosquitoIndex24hour: MosquitoIndex24hour,
         val mosquitoIndex12hour: MosquitoIndex12hour

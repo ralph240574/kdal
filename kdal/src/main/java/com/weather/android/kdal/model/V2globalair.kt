@@ -100,4 +100,8 @@ data class V2globalair(
                 val pollutantPhrase: String? // Nitrogen Dioxide
         )
     }
+
+    fun validate() {
+        globalairquality.validateNoNullsInList()
+    }
 }

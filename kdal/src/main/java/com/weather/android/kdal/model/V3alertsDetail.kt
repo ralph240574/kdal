@@ -96,4 +96,10 @@ data class V3alertsDetail(
                 val floodEndTimeLocalTimeZone: String? // null
         )
     }
+
+    fun validate() {
+        alertDetail.categories.validateNoNullsInList()
+        alertDetail.responseTypes.validateNoNullsInList()
+        alertDetail.texts.validateNoNullsInList()
+    }
 }

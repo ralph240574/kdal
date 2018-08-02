@@ -5,12 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-
 import com.weather.android.kdal.app.R
-import com.weather.android.kdal.model.Vt1dailyforecast
+import com.weather.android.kdal.model.V3WxForecastDaily
 
 
-class DailyRecyclerViewAdapter(private val vt1dailyforecast: Vt1dailyforecast) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class DailyRecyclerViewAdapter(private val v3WxForecastDaily: V3WxForecastDaily) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if (viewType == TYPE_HEADER) {
@@ -34,22 +33,27 @@ class DailyRecyclerViewAdapter(private val vt1dailyforecast: Vt1dailyforecast) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         val adjPos = position - 1
+
+
+        val dayIndex = adjPos * 2
+        val nightIndex = (adjPos * 2) + 1
         if (holder is ItemViewHolder) {
-            formatText(holder.day, "%s", vt1dailyforecast.day.dayPartName[adjPos])
-            formatText(holder.night, "%s", vt1dailyforecast.night.dayPartName[adjPos])
+            val daypart = v3WxForecastDaily.daypart[0]
+            formatText(holder.day, "%s", daypart.daypartName[dayIndex])
+            formatText(holder.night, "%s", daypart.daypartName[nightIndex])
 
-            formatText(holder.dayCond, "%d", vt1dailyforecast.day.icon[adjPos])
-            formatText(holder.nightCond, "%d", vt1dailyforecast.night.icon[adjPos])
+            formatText(holder.dayCond, "%d", daypart.iconCode[dayIndex])
+            formatText(holder.nightCond, "%d", daypart.iconCode[nightIndex])
 
-            formatText(holder.dayTemp, "%d F", vt1dailyforecast.day.temperature[adjPos])
-            formatText(holder.nightTemp, "%d F", vt1dailyforecast.night.temperature[adjPos])
+            formatText(holder.dayTemp, "%d F", daypart.temperature[dayIndex])
+            formatText(holder.nightTemp, "%d F", daypart.temperature[nightIndex])
 
-            val dayDir = vt1dailyforecast.day.windDirCompass[adjPos]
-            val daySpeed = vt1dailyforecast.day.windSpeed[adjPos]
+            val dayDir = daypart.windDirection[dayIndex]
+            val daySpeed = daypart.windSpeed[dayIndex]
             formatText(holder.dayWind, "%1\$s %2\$d MPH", dayDir, daySpeed)
 
-            val nightDir = vt1dailyforecast.night.windDirCompass[adjPos]
-            val nightSpeed = vt1dailyforecast.night.windSpeed[adjPos]
+            val nightDir = daypart.windDirection[nightIndex]
+            val nightSpeed = daypart.windSpeed[nightIndex]
             formatText(holder.nightWind, "%1\$s %2\$d MPH", nightDir, nightSpeed)
         }
     }
@@ -65,7 +69,7 @@ class DailyRecyclerViewAdapter(private val vt1dailyforecast: Vt1dailyforecast) :
     }
 
     override fun getItemCount(): Int {
-        return vt1dailyforecast.day.dayPartName.size + 1
+        return v3WxForecastDaily.daypart[0].daypartName.size + 1
     }
 
     class ItemViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {

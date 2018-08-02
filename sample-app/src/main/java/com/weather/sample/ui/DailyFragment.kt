@@ -31,8 +31,8 @@ class DailyFragment : ContentFragment() {
 
 
     override fun handleData(v3Agg: V3Agg) {
-        Log.d(TAG, "handling data: ${v3Agg.vt1dailyforecast}")
-        recyclerView!!.adapter = DailyRecyclerViewAdapter(v3Agg.vt1dailyforecast!!)
+        Log.d(TAG, "handling data: ${v3Agg.v3WxForecastDaily15day}")
+        recyclerView!!.adapter = DailyRecyclerViewAdapter(v3Agg.v3WxForecastDaily15day!!)
         recyclerView!!.invalidate()
     }
 

@@ -8,4 +8,11 @@ data class Vt1lightning(
         val latitude: List<Double>,
         val longitude: List<Double>,
         val distance: List<Double>
-)
+) {
+    fun validate() {
+        strikeTime.validateNoNullsInList()
+        latitude.validateNoNullsInList()
+        longitude.validateNoNullsInList()
+        distance.validateNoNullsInList()
+    }
+}

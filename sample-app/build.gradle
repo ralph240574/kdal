@@ -27,11 +27,11 @@ android {
 }
 
 dependencies {
-//    api project(':kdal')
+    api project(':kdal')
 
-    implementation ("com.weather.android:kdal:0.1.0-SNAPSHOT@aar"){
-        transitive = true
-    }
+//    implementation ("com.weather.android:kdal:0.1.0-SNAPSHOT@aar"){
+//        transitive = true
+//    }
 
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${rootProject.ext.kotlin_version}"

@@ -2,7 +2,6 @@ package com.weather.android.kdal.model
 
 import com.squareup.moshi.JsonClass
 
-
 @JsonClass(generateAdapter = true)
 data class Vt1wwir(
         val processTime: String, // 2018-06-22T11:00:00-0500

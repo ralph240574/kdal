@@ -3,9 +3,8 @@ package com.weather.android.kdal.model
 import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import com.weather.android.kdal.Product
 
-//TODO datestamp of retrieval
+//TODO datestamp of retrieval ??
 
 @JsonClass(generateAdapter = true)
 data class V3Agg(
@@ -18,8 +17,6 @@ data class V3Agg(
 
         val vt1currentTides: Vt1currentTides?,
 
-        val vt1dailyforecast: Vt1dailyforecast?,
-
         val vt1idxBreathingDaypart: Vt1idxBreathingDaypart?,
 
         val vt1idxPollenDaypart: Vt1idxPollenDaypart?,
@@ -29,8 +26,6 @@ data class V3Agg(
         @SerializedName(value = "Vt1nowcast")
         @Json(name = "Vt1nowcast")
         val vt1nowcast: Vt1nowcast?,
-
-        val vt1observation: Vt1observation?,
 
         @SerializedName(value = "Vt1pollenobs")
         @Json(name = "Vt1pollenobs")
@@ -48,9 +43,9 @@ data class V3Agg(
 
         val v2globalair: V2globalair?,
 
-        @SerializedName(value = "V2idxBreathingDaypart15")
-        @Json(name = "V2idxBreathingDaypart15")
-        val v2idxBreathingDaypart15: V2idxBreathingDaypart15?,
+        @SerializedName(value = "V2idxBreathingDaypart")
+        @Json(name = "V2idxBreathingDaypart")
+        val v2idxBreathingDaypart15: V2idxBreathingDaypart?,
 
         @SerializedName(value = "V2idxDriveCurrent")
         @Json(name = "V2idxDriveCurrent")
@@ -60,7 +55,7 @@ data class V3Agg(
 
         val v2idxPollenDaypart15: V2idxPollenDaypart15?,
 
-        val v2idxMosquitoDaily3: V2idxMosquitoDaily3?,
+        val v2idxMosquitoDaily3: V2idxMosquitoDaily?,
 
         val v3alertsDetail: V3alertsDetail?,
 
@@ -92,7 +87,7 @@ data class V3Agg(
 
         @SerializedName(value = "v3-wx-indices-flux-daily-15day")
         @Json(name = "v3-wx-indices-flux-daily-15day")
-        val v3WxIndicesFluxDaily15day: V3WxIndicesFluxDaily15day?,
+        val v3WxIndicesFluxDaily15day: V3WxIndicesFluxDaily?,
 
         @SerializedName(value = "v3-wx-indices-pollen-historical-1day")
         @Json(name = "v3-wx-indices-pollen-historical-1day")
@@ -110,11 +105,40 @@ data class V3Agg(
         @Json(name = "v3-location-point")
         val v3LocationPoint: V3LocationPoint?
 
-)
+) {
 
 
-//TODO implement
-fun contains(prod: Product): Boolean {
-    return false
+    //this will ensure that all Lists with non nullable types have no null value
+    fun validate() {
+
+        v2fcstintraday3?.validate()
+        v2globalair?.validate()
+        v2idxBreathingDaypart15?.validate()
+        v2idxPollenDaypart15?.validate()
+
+
+        v3alertsDetail?.validate()
+        v3alertsHeadlines?.validate()
+
+        v3WxForecastDaily15day?.validate()
+
+        v3WxForecastHourly10day?.validate()
+        v3WxIndicesFluxDaily15day?.validate()
+        v3WxIndicesPollenHistorical1day?.validate()
+
+        v3WxConditionsHistoricalDailysummary30day?.validate()
+
+        vt1precipitation?.validate()
+        vt1lightning?.validate()
+
+    }
+
+
 }
 
+fun <T> List<T>.validateNoNullsInList(): List<T> {
+    forEach {
+        if (it == null) throw IllegalArgumentException("null element in list")
+    }
+    return this
+}

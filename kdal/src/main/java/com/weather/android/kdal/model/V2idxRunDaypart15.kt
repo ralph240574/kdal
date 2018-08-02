@@ -28,4 +28,16 @@ data class V2idxRunDaypart15(
             val expireTimeGmt: Long, // 1531163838
             val statusCode: Int // 200
     )
+
+    fun validate() {
+        runWeatherIndex12hour.fcstValid.validateNoNullsInList()
+        runWeatherIndex12hour.fcstValidLocal.validateNoNullsInList()
+        runWeatherIndex12hour.dayInd.validateNoNullsInList()
+        runWeatherIndex12hour.num.validateNoNullsInList()
+        runWeatherIndex12hour.daypartName.validateNoNullsInList()
+        runWeatherIndex12hour.longRunWeatherIndex.validateNoNullsInList()
+        runWeatherIndex12hour.shortRunWeatherCategory.validateNoNullsInList()
+        runWeatherIndex12hour.shortRunWeatherIndex.validateNoNullsInList()
+        runWeatherIndex12hour.shortRunWeatherCategory.validateNoNullsInList()
+    }
 }

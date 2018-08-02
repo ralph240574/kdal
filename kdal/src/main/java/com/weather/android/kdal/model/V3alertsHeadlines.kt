@@ -68,6 +68,7 @@ data class V3alertsHeadlines(
                 val responseType: String, // Avoid
                 val responseTypeCode: Int // 5
         )
+
         data class Flood(
                 val floodLocationId: String?, // 00000
                 val floodLocationName: String?, // N/A
@@ -84,5 +85,14 @@ data class V3alertsHeadlines(
                 val floodEndTimeLocal: String?, // null
                 val floodEndTimeLocalTimeZone: String? // null
         )
+    }
+
+    fun validate() {
+        alerts.validateNoNullsInList()
+
+        alerts.forEach {
+            it.categories.validateNoNullsInList()
+            it.responseTypes.validateNoNullsInList()
+        }
     }
 }

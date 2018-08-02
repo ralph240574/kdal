@@ -32,7 +32,8 @@ dependencies {
 
     api 'com.squareup.retrofit2:retrofit:2.4.0'
 
-    api 'com.squareup.retrofit2:converter-gson:2.4.0' // will allow null values for non-nullable fields
+    api 'com.squareup.retrofit2:converter-gson:2.4.0'
+    // will allow null values for non-nullable fields
     api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     api 'io.reactivex.rxjava2:rxjava:2.1.9'
     api 'io.reactivex.rxjava2:rxkotlin:2.2.0'
@@ -40,20 +41,20 @@ dependencies {
 
     //moshi parser seems to be much better, it does not allow null for non-nullable fields
     api 'com.squareup.moshi:moshi:1.6.0'
-    api 'com.squareup.retrofit2:converter-moshi:2.3.0' // this will pull in kotlin reflect
+    api 'com.squareup.retrofit2:converter-moshi:2.3.0'
+
+    // this will use kotlin reflection, this will enforce non-nullable fields
+    api 'com.squareup.moshi:moshi-kotlin:1.6.0'// this will pull in kotlin reflect
 
     kapt "com.squareup.moshi:moshi-kotlin-codegen:1.6.0" // this will generate adapters
 
 //    consider this for date time stuff, backport of Java 8 timestuff, but adds >500K
 //    api 'com.jakewharton.threetenabp:threetenabp:1.1.0'
 
-
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.apache.directory.studio:org.apache.commons.io:2.4'
 
-
     testImplementation 'org.jetbrains.kotlin:kotlin-reflect:1.2.51'
-
 
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

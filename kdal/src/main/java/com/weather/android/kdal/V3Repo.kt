@@ -1,6 +1,8 @@
 package com.weather.android.kdal
 
+import android.util.Log
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.weather.android.kdal.Product.Companion.asString
 import com.weather.android.kdal.model.V3Agg
 import com.weather.android.kdal.network.ApiKeyInterceptor
@@ -67,10 +69,12 @@ class V3Repo constructor(
 
 
     private fun moshiConverterFactory() =
-            MoshiConverterFactory.create(Moshi.Builder().build())
+            MoshiConverterFactory.create(Moshi.Builder().add(KotlinJsonAdapterFactory()).build())
 
 
     companion object {
+
+        const val TAG = "V3Repo"
 
         val BASE_URL = "https://api.weather.com"
 
@@ -111,6 +115,7 @@ class V3Repo constructor(
 
         val fromNetwork = getV3AggFromNetwork(products, latLng = latLng)
 
+
         return when (setMode) {
             Mode.OFFLINE -> fromCache.toObservable()
             Mode.CACHE_FIRST -> fromCache.onErrorResumeNext(fromNetwork).toObservable()
@@ -119,7 +124,9 @@ class V3Repo constructor(
             Mode.NETWORK_ONLY -> fromNetwork.toObservable()
         }
 
+
     }
+
 
     /**
      * Returns Single with data from network
@@ -138,6 +145,8 @@ class V3Repo constructor(
                 getScaleParameter(queryParameters),
                 latLng.toQueryParameter(),
                 getUnitsParameter(queryParameters))
+                .doOnSuccess({ it.validate() })
+                .doOnError { t: Throwable -> Log.e(TAG, t.toString(), t) }
     }
 
 

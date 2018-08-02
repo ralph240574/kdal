@@ -27,12 +27,10 @@ class V3RepoTest {
             Product.VT1_ALERTS,
             Product.VT1_CONTENT_MODE,
             Product.VT1_CURRENT_TIDES,
-            Product.VT1_DAILYFORECAST,
             Product.VT1_IDX_BREATHING_DAYPART,
             Product.VT1_IDX_POLLEN_DAYPART,
             Product.VT1_LIGHTNING,
             Product.VT1_NOWCAST,
-            Product.VT1_OBSERVATION,
             Product.VT1_POLLENOBS,
             Product.VT1_PRECIPITATION,
             Product.VT1_RUNWEATHERHOURLY,
@@ -169,133 +167,34 @@ class V3RepoTest {
     @Test
     fun getV3Agg() {
 
-        val observable = v3Repo.getV3Agg(
-                products,
-                latLng = v3Repo.latLng)
 
-
-        observable.subscribeBy(
-                onNext = {
-                    println("+++++++ ${it}")
-                },
-                onError = { println(it) }
-        )
-
-    }
-
-    @Test
-    fun getV3AggFromCache() {
-
-
-        latlongs.forEach({
-            val single = v3Repo.getV3AggFromCache(
+        latlongs.forEach {
+            val observable = v3Repo.getV3Agg(
                     products,
                     latLng = it,
-                    maxAgeResponse = 30)
+                    setMode = V3Repo.Mode.OFFLINE,
+                    maxAgeResponseCache = 15)
 
-            var t: Throwable? = null
 
-            var result: V3Agg? = null
-
-            val start = System.currentTimeMillis()
-
-            single.subscribe(
-                    { it ->
-                        result = it
-                        println("time: ${System.currentTimeMillis() - start}")
+            observable.subscribeBy(
+                    onNext = {
+                        println("+++++++ ${it}")
                     },
-                    { throwable -> t = throwable })
-
-
-
-            Assert.assertNull(t)
-            Assert.assertNotNull(result)
-
-            println(result)
-
-            products.forEach {
-                print("${it}: ")
-                checkV3Agg(it, result!!)
-            }
-        })
-    }
-
-
-    @Test
-    fun getV3AggFromNetworkAndCache() {
-
-        val observable = v3Repo.getV3AggFromNetwork(products,
-                latLng = v3Repo.latLng)
-
-        var t: Throwable? = null
-
-        var result: V3Agg? = null
-
-        observable
-                .subscribe({ v3Agg -> result = v3Agg },
-                        { throwable ->
-                            val observable2 = v3Repo.getV3AggFromCache(
-                                    products,
-                                    latLng = v3Repo.latLng,
-                                    maxAgeResponse = 60)
-
-                            observable2.subscribe({ v3Agg -> result = v3Agg },
-                                    { throwable2 -> t = throwable2 })
-
-                        })
-
-//        Assert.assertNull(t)
-        Assert.assertNotNull(result)
-
-        products.forEach {
-            print("${it}: ")
-            checkV3Agg(it, result!!)
+                    onError = { println("XXXXXXXXXXXXXXX$it") }
+            )
         }
     }
 
-    @Test
-    fun getV3AggFromNetwork() {
-
-        val observable = v3Repo.getV3AggFromNetwork(products,
-                latLng = v3Repo.latLng)
-
-        var t: Throwable? = null
-
-        var result: V3Agg? = null
-
-        observable
-                .subscribe({ v3Agg -> result = v3Agg },
-                        { throwable ->
-                            val observable2 = v3Repo.getV3AggFromCache(
-                                    products,
-                                    latLng = v3Repo.latLng,
-                                    maxAgeResponse = 30)
-
-                            observable2.subscribe({ v3Agg -> result = v3Agg },
-                                    { throwable2 -> t = throwable2 })
-
-                        })
-
-//        Assert.assertNull(t)
-        Assert.assertNotNull(result)
-        println(result)
-
-
-//        products.forEach {
-//            print("${it}: ")
-//            checkV3Agg(it, result!!)
-//        }
-    }
-
-
-    fun checkV3Agg(prod: Product, v3Agg: V3Agg) {
-        Assert.assertNotNull(v3Agg)
+    fun checkV3Agg(prod: Product, v3Agg: V3Agg?) {
+//        Assert.assertNotNull(v3Agg)
 
         val field = V3Agg::class.memberProperties.first {
             it.name.toLowerCase(Locale.US) == prod.toString().toLowerCase(Locale.US).replace("-", "")
         }
 
-        println(field.get(v3Agg))
+        if (v3Agg != null) {
+            println(field.get(v3Agg))
+        }
     }
 
 

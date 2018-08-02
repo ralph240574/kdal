@@ -13,4 +13,16 @@ data class Vt1precipitation(
         val intensity: List<Int>,
         val severity: List<Int>,
         val imminence: List<Int>
-)
+) {
+    fun validate() {
+        characteristic.validateNoNullsInList()
+        startTime.validateNoNullsInList()
+        endTime.validateNoNullsInList()
+        eventType.validateNoNullsInList()
+        forecastedRainAmount.validateNoNullsInList()
+        forecastedSnowAmount.validateNoNullsInList()
+        intensity.validateNoNullsInList()
+        severity.validateNoNullsInList()
+        imminence.validateNoNullsInList()
+    }
+}

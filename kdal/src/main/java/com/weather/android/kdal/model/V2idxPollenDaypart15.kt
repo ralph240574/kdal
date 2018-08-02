@@ -30,4 +30,18 @@ data class V2idxPollenDaypart15(
             val ragweedPollenIndex: List<Int>,
             val ragweedPollenCategory: List<String>
     )
+
+    fun validate() {
+        pollenForecast12hour.fcstValid.validateNoNullsInList()
+        pollenForecast12hour.fcstValidLocal.validateNoNullsInList()
+        pollenForecast12hour.dayInd.validateNoNullsInList()
+        pollenForecast12hour.num.validateNoNullsInList()
+        pollenForecast12hour.daypartName.validateNoNullsInList()
+        pollenForecast12hour.grassPollenIndex.validateNoNullsInList()
+        pollenForecast12hour.grassPollenCategory.validateNoNullsInList()
+        pollenForecast12hour.treePollenIndex.validateNoNullsInList()
+        pollenForecast12hour.treePollenCategory.validateNoNullsInList()
+        pollenForecast12hour.ragweedPollenIndex.validateNoNullsInList()
+        pollenForecast12hour.ragweedPollenCategory.validateNoNullsInList()
+    }
 }

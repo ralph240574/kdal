@@ -27,8 +27,6 @@ abstract class ContentFragment : Fragment() {
     lateinit var v3Repo: V3Repo
 
     val products = setOf(
-            Product.VT1_DAILYFORECAST,
-            Product.VT1_OBSERVATION,
             Product.VT1_IDX_POLLEN_DAYPART,
             Product.VT1_RUNWEATHERHOURLY,
             Product.VT1_PRECIPITATION,
@@ -45,6 +43,7 @@ abstract class ContentFragment : Fragment() {
             Product.V3_WX_OBSERVATIONS_CURRENT,
             Product.V3_ALERTS_HEADLINES,
             Product.V3_WX_CONDITIONS_HISTORICAL_DAILYSUMMARY_30_DAY,
+            Product.V3_WX_FORECAST_DAILY_15_DAY,
             Product.V3_WX_CONDITIONS_HISTORICAL_HOURLY_1_DAY,
             Product.V3_WX_FORECAST_HOURLY_10_DAY)
 
@@ -76,21 +75,21 @@ abstract class ContentFragment : Fragment() {
 
         Log.d(javaClass.toString(), " loading weather ${v3Repo.mode}")
 
-        val atlGeoCode = LatLng(33.92, -84.34)
+//        val atlGeoCode = LatLng(33.92, -84.34)
 
-        val nycGeoCode = "40.74,-74.00"
+        val nycGeoCode = LatLng(40.74, -74.00)
 
         val lonGeoCode = "51.50,0.00"
 
 
-        v3Repo.latLng = atlGeoCode
+        v3Repo.latLng = nycGeoCode
 
         compositeDisposable?.add(observable()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribeBy(
-                        onNext = { v3Agg -> handleData(v3Agg) },
-                        onError = { t -> handleError(t) })
+                        onNext = { handleData(it) },
+                        onError = { handleError(it) })
         )
     }
 

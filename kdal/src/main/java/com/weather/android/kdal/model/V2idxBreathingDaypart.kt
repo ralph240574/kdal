@@ -3,7 +3,7 @@ package com.weather.android.kdal.model
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class V2idxBreathingDaypart15(
+data class V2idxBreathingDaypart(
         val metadata: Metadata,
         val breathingIndex12hour: BreathingIndex12hour
 ) {
@@ -26,4 +26,15 @@ data class V2idxBreathingDaypart15(
             val expireTimeGmt: Long, // 1531163838
             val statusCode: Int // 200
     )
+
+
+    fun validate(){
+        breathingIndex12hour.fcstValid.validateNoNullsInList()
+        breathingIndex12hour.fcstValidLocal.validateNoNullsInList()
+        breathingIndex12hour.dayInd.validateNoNullsInList()
+        breathingIndex12hour.num.validateNoNullsInList()
+        breathingIndex12hour.daypartName.validateNoNullsInList()
+        breathingIndex12hour.breathingIndex.validateNoNullsInList()
+        breathingIndex12hour.breathingCategory.validateNoNullsInList()
+    }
 }

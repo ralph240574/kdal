@@ -85,4 +85,9 @@ data class V2fcstintraday3(
             @Json(name = "status_code")
             val statusCode: Int // 200
     )
+
+    fun validate() {
+        forecasts.validateNoNullsInList()
+    }
+
 }
