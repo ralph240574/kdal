@@ -7,6 +7,7 @@ data class V2idxRunDaypart15(
         val metadata: Metadata,
         val runWeatherIndex12hour: RunWeatherIndex12hour
 ) {
+    @JsonClass(generateAdapter = true)
     data class RunWeatherIndex12hour(
             val fcstValid: List<Long>,
             val fcstValidLocal: List<String>,
@@ -19,6 +20,7 @@ data class V2idxRunDaypart15(
             val shortRunWeatherCategory: List<String>
     )
 
+    @JsonClass(generateAdapter = true)
     data class Metadata(
             val language: String, // en-US
             val transactionId: String, // 1531162452464:1764351240

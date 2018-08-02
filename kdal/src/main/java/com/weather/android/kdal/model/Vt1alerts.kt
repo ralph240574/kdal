@@ -24,6 +24,7 @@ data class Vt1alerts(
         val etn: List<String>,
         val texts: List<Text>
 ) {
+    @JsonClass(generateAdapter = true)
     data class Text(
             val languageCode: List<String>,
             val description: List<String>,

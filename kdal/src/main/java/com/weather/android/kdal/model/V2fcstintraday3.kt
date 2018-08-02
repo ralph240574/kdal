@@ -9,6 +9,7 @@ data class V2fcstintraday3(
         val metadata: Metadata,
         val forecasts: List<Forecast>
 ) {
+    @JsonClass(generateAdapter = true)
     data class Forecast(
             @SerializedName(value = "class")
             @Json(name = "class")
@@ -69,6 +70,8 @@ data class V2fcstintraday3(
             val qualifier: Any? // null
     )
 
+
+    //TODO profile if it is faster to generate adapters for all classes
     data class Metadata(
             val language: String, // en-US
             @SerializedName(value = "transaction_id")

@@ -7,10 +7,12 @@ data class V3alertsHeadlines(
         val metadata: Metadata,
         val alerts: List<Alert>
 ) {
+    @JsonClass(generateAdapter = true)
     data class Metadata(
             val next: Int? // null
     )
 
+    @JsonClass(generateAdapter = true)
     data class Alert(
             val detailKey: String, // 7b09e553-2eb0-3dd6-bc87-b60f5a5f6af2
             val messageTypeCode: Int, // 2
@@ -59,16 +61,19 @@ data class V3alertsHeadlines(
             val identifier: String, // 2437604aba3151beba43f44343bb2668
             val processTimeUTC: Long // 1529683875
     ) {
+        @JsonClass(generateAdapter = true)
         data class Category(
                 val category: String, // Met
                 val categoryCode: Int // 2
         )
 
+        @JsonClass(generateAdapter = true)
         data class ResponseType(
                 val responseType: String, // Avoid
                 val responseTypeCode: Int // 5
         )
 
+        @JsonClass(generateAdapter = true)
         data class Flood(
                 val floodLocationId: String?, // 00000
                 val floodLocationName: String?, // N/A

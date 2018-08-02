@@ -68,7 +68,7 @@ class V3RepoTest {
     val london = LatLng(51.5283063, -0.38)
     val tokyo = LatLng(35.6732615, 139.56)
     val moscow = LatLng(55.5807418, 36.8237461)
-    val rome = LatLng(41.8504371, 11.95309)
+    val rome = LatLng(41.90, 12.49)
     val cairo = LatLng(30.0594698, 31.18)
 
     val latlongs = listOf(atl, nyc, dehli, jakarta, mumbai, la, berlin, paris, london, tokyo, moscow, rome, cairo)
@@ -185,6 +185,7 @@ class V3RepoTest {
         }
     }
 
+
     fun checkV3Agg(prod: Product, v3Agg: V3Agg?) {
 //        Assert.assertNotNull(v3Agg)
 
@@ -207,4 +208,17 @@ class V3RepoTest {
     }
 
 
+    @Test
+    fun something() {
+
+//        testProduct(Product.V2_FCSTINTRADAY3)
+//        testProduct(Product.V2_IDX_MOSQUITO_DAILY_3)
+//        testProduct(Product.V2_GLOBALAIR)
+//        testProduct(Product.V2_IDX_DRIVE_CURRENT)
+        testProduct(Product.V2_IDX_BREATHING_DAYPART15)
+        testProduct(Product.V3_WX_CONDITIONS_HISTORICAL_DAILYSUMMARY_30_DAY)
+//        testProduct(Product.V2_GLOBALAIR)
+
+
+    }
 }

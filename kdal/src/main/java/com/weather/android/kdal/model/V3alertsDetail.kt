@@ -6,6 +6,7 @@ import com.squareup.moshi.JsonClass
 data class V3alertsDetail(
         val alertDetail: AlertDetail
 ) {
+    @JsonClass(generateAdapter = true)
     data class AlertDetail(
             val detailKey: String, // 1891f0ed-f39a-3566-8178-995c32998227
             val messageTypeCode: Int, // 1
@@ -57,6 +58,7 @@ data class V3alertsDetail(
             val polygon: Polygon?, // null
             val synopsis: String? // null
     ) {
+        @JsonClass(generateAdapter = true)
         data class Text(
                 val languageCode: String?, // en-US
                 val description: String?, // ...Air Quality Alert in effect for Monday July 09...The Mid-America Regional Council has issued an Air Quality Alert...ineffect for Monday July 9th. Outdoor Air Quality Index, or AQI, valuesin excess of 100 are expected with ozone being the primary pollutant.People and businesses are urged to avoid activities which lead toozone formation. These activities include refueling vehicles ortopping off when refueling idling vehicles unnecessarily and usinggasoline powered lawn equipment. Positive activities include carpooling, biking to work, delaying or combining errands, and usingwater-based paints and cleaners.When pollution levels are elevated, the Mid-America Regional Councilrecommends that individuals consider limiting strenuous outdoorphysical activity to reduce the risk of adverse health effects.People who may be especially sensitive to the effects of elevatedlevels of pollutants include the very young, and those with pre-existing respiratory problems such as asthma or heart disease. Thosewith symptoms should consider consulting their personal physician.For further information please see the Mid-America Regional Councilair quality program website at http://www.airqkc.org.
@@ -64,21 +66,25 @@ data class V3alertsDetail(
                 val overview: String? // null
         )
 
+        @JsonClass(generateAdapter = true)
         data class Category(
                 val category: String, // Met
                 val categoryCode: Int // 2
         )
 
+        @JsonClass(generateAdapter = true)
         data class ResponseType(
                 val responseType: String, // Avoid
                 val responseTypeCode: Int // 5
         )
 
+        @JsonClass(generateAdapter = true)
         data class Polygon(
                 val lat: Double?, // 36.59
                 val lon: Double? // -104.90
         )
 
+        @JsonClass(generateAdapter = true)
         data class Flood(
                 val floodLocationId: String?, // 00000
                 val floodLocationName: String?, // N/A

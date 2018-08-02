@@ -3,12 +3,12 @@ package com.weather.android.kdal
 import com.squareup.moshi.Moshi
 import com.weather.android.kdal.model.V3Agg
 import com.weather.android.kdal.model.Vt1currentTides
-import com.weather.android.kdal.model.validateNoNullsInList
 import org.junit.Test
 import java.io.File
 
 
 class ParsingTest {
+
 
     @Test
     fun testParsing() {
@@ -22,14 +22,7 @@ class ParsingTest {
         }"""
 
 
-        val obs = """{"id": "29.19,-96.27",  "v3-wx-observations-current":
-
-   {"cloudCeiling":null,"cloudCoverPhrase":"crap","dayOfWeek":"Wednesday","dayOrNight":"D","expirationTimeUtc":1533150998,"iconCode":34,"obsQualifierCode":null,"obsQualifierSeverity":null,"precip24Hour":0.24,"pressureAltimeter":29.96,"pressureChange":-0.04,"pressureMeanSeaLevel":1014.8,"pressureTendencyCode":2,"pressureTendencyTrend":"Falling","relativeHumidity":31,"snow24Hour":0.0,"sunriseTimeLocal":"2018-08-01T06:45:51-0500","sunriseTimeUtc":1533123951,"sunsetTimeLocal":"2018-08-01T20:17:02-0500","sunsetTimeUtc":1533172622,"temperature":93,"temperatureChange24Hour":0,"temperatureDewPoint":58,"temperatureFeelsLike":94,"temperatureHeatIndex":94,"temperatureMax24Hour":94,"temperatureMaxSince7Am":93,"temperatureMin24Hour":72,"temperatureWindChill":93,"uvDescription":"Extreme","uvIndex":11,"validTimeLocal":"2018-08-01T14:06:38-0500","validTimeUtc":1533150398,"visibility":9.000,"windDirection":350,"windDirectionCardinal":"N","windGust":null,"windSpeed":7,"wxPhraseLong":"Fair","wxPhraseMedium":"Fair","wxPhraseShort":"Fair"}
-
-      }"""
-
-
-        val v3DailyForecast = File("src/test/V3Daily.json").readText(Charsets.UTF_8)
+        val v3DailyForecast = File("src/test/data/V3Daily.json").readText(Charsets.UTF_8)
 
 
 //        val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
@@ -58,7 +51,7 @@ class ParsingTest {
             println(it)
         }
 
-        tides?.height?.validateNoNullsInList()
+//        tides?.height?.validateNoNullsInList()
 
         tides?.type?.forEach {
             println(it == null)
@@ -67,6 +60,55 @@ class ParsingTest {
 
     }
 
+    @Test
+    fun testParseV3Obs() {
+
+        val adapter = Moshi.Builder().build().adapter<V3Agg>(V3Agg::class.java)
+
+        val v3wxObservationsCurrent = File("src/test/data/v3-wx-observations-current.json").readText(Charsets.UTF_8)
+
+        val v3Agg = adapter.fromJson(v3wxObservationsCurrent)
+
+        val obs = v3Agg?.v3WxObservationsCurrent
+
+        println(obs)
+
+    }
+
+
+    @Test
+    fun testParseV3fcstIntraday3() {
+
+        val adapter = Moshi.Builder().build().adapter<V3Agg>(V3Agg::class.java)
+
+        val v2fcstintraday3 = File("src/test/data/v2fcstintraday3.json").readText(Charsets.UTF_8)
+
+        val v3Agg = adapter.fromJson(v2fcstintraday3)
+
+        val fcst = v3Agg?.v2fcstintraday3!!
+
+
+        fcst.forecasts.forEach {
+            println(it)
+        }
+    }
+
+
+    @Test
+    fun parsev3wxconditionshistoricaldailysummary30day() {
+
+        val adapter = Moshi.Builder().build().adapter<V3Agg>(V3Agg::class.java)
+
+        val histJson = File("src/test/data/v3-wx-conditions-historical-dailysummary-30day.json").readText(Charsets.UTF_8)
+
+        val v3Agg = adapter.fromJson(histJson)
+
+        val hist = v3Agg?.v3WxConditionsHistoricalDailysummary30day!!
+
+        println(hist)
+
+hist.validate()
+    }
 
     @Test
     fun testingStuff() {

@@ -9,6 +9,7 @@ data class V2globalair(
         val metadata: Metadata,
         val globalairquality: List<Globalairquality>
 ) {
+    @JsonClass(generateAdapter = true)
     data class Metadata(
             val language: String, // en-US
             @SerializedName(value = "transaction_id")
@@ -24,6 +25,7 @@ data class V2globalair(
             val statusCode: Int // 200
     )
 
+    @JsonClass(generateAdapter = true)
     data class Globalairquality(
             @SerializedName(value = "class")
             @Json(name = "class")
@@ -75,6 +77,8 @@ data class V2globalair(
             val airQualityCatIdx: Int?, // 1
             val pollutants: List<Pollutant?>?
     ) {
+
+        @JsonClass(generateAdapter = true)
         data class Pollutant(
                 val pollutant: String?, // NO2
                 @SerializedName(value = "pollutant_amount")

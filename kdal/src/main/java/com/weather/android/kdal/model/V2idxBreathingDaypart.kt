@@ -28,7 +28,7 @@ data class V2idxBreathingDaypart(
     )
 
 
-    fun validate(){
+    fun validate() {
         breathingIndex12hour.fcstValid.validateNoNullsInList()
         breathingIndex12hour.fcstValidLocal.validateNoNullsInList()
         breathingIndex12hour.dayInd.validateNoNullsInList()

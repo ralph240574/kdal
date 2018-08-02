@@ -23,12 +23,8 @@ data class V3Agg(
 
         val vt1lightning: Vt1lightning?,
 
-        @SerializedName(value = "Vt1nowcast")
-        @Json(name = "Vt1nowcast")
         val vt1nowcast: Vt1nowcast?,
 
-        @SerializedName(value = "Vt1pollenobs")
-        @Json(name = "Vt1pollenobs")
         val vt1pollenobs: Vt1pollenobs?,
 
         val vt1precipitation: Vt1precipitation?,
@@ -43,8 +39,8 @@ data class V3Agg(
 
         val v2globalair: V2globalair?,
 
-        @SerializedName(value = "V2idxBreathingDaypart")
-        @Json(name = "V2idxBreathingDaypart")
+        @SerializedName(value = "V2idxBreathingDaypart15")
+        @Json(name = "V2idxBreathingDaypart15")
         val v2idxBreathingDaypart15: V2idxBreathingDaypart?,
 
         @SerializedName(value = "V2idxDriveCurrent")
