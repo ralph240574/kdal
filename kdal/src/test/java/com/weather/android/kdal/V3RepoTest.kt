@@ -172,8 +172,8 @@ class V3RepoTest {
             val observable = v3Repo.getV3Agg(
                     products,
                     latLng = it,
-                    setMode = V3Repo.Mode.OFFLINE,
-                    maxAgeResponseCache = 15)
+                    setMode = V3Repo.Mode.CACHE_FIRST,
+                    maxAgeResponseCache = 30)
 
 
             observable.subscribeBy(

@@ -17,7 +17,7 @@ enum class Product(val productName: String, val queryParameter: Set<QueryParamet
     VT1_WWIR("vt1wwir"),
     V2_FCSTINTRADAY3("V2fcstintraday3"),
     V2_GLOBALAIR("v2globalair", setOf(LANGUAGE)),
-    V2_IDX_BREATHING_DAYPART15("V2idxBreathingDaypart", setOf(LANGUAGE)),
+    V2_IDX_BREATHING_DAYPART15("V2idxBreathingDaypart15", setOf(LANGUAGE)),
     V2_IDX_DRIVE_CURRENT("V2idxDriveCurrent", setOf(LANGUAGE)),
     V2_IDX_POLLEN_DAYPART_15("v2idxPollenDaypart15", setOf(LANGUAGE)),
     V2_IDX_RUN_DAY_PART15("v2idxRunDaypart15", setOf(LANGUAGE)),
