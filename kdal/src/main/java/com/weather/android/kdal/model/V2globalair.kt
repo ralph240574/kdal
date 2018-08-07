@@ -3,6 +3,7 @@ package com.weather.android.kdal.model
 import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import com.weather.android.kdal.util.validateNoNullsInList
 
 @JsonClass(generateAdapter = true)
 data class V2globalair(

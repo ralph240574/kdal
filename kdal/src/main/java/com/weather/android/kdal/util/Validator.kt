@@ -1,4 +1,4 @@
-package com.weather.android.kdal.model
+package com.weather.android.kdal.util
 
 
 fun <T> List<T>.validateNoNullsInList(): List<T> {

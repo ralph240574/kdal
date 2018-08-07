@@ -1,6 +1,7 @@
 package com.weather.android.kdal.model
 
 import com.squareup.moshi.JsonClass
+import com.weather.android.kdal.util.validateNoNullsInList
 
 @JsonClass(generateAdapter = true)
 data class Vt1idxPollenDaypart(

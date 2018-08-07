@@ -71,7 +71,7 @@ data class V3Agg(
 
         @SerializedName(value = "v3-wx-forecast-hourly-2day")
         @Json(name = "v3-wx-forecast-hourly-2day")
-        val V3WxForecastHourly2day: V3WxForecastHourly?,
+        val v3WxForecastHourly2day: V3WxForecastHourly?,
 
         @SerializedName(value = "v3-wx-forecast-hourly-10day")
         @Json(name = "v3-wx-forecast-hourly-10day")
@@ -117,8 +117,11 @@ data class V3Agg(
         v3alertsHeadlines?.validate()
 
         v3WxForecastDaily15day?.validate()
+        v3WxForecastDaily15day?.validate()
 
+        v3WxForecastHourly2day?.validate()
         v3WxForecastHourly10day?.validate()
+
         v3WxIndicesFluxDaily15day?.validate()
         v3WxIndicesPollenHistorical1day?.validate()
 
@@ -129,5 +132,13 @@ data class V3Agg(
 
     }
 
+
+    //TOTO merge function
+    fun merge(other: V3Agg): V3Agg {
+
+        IllegalAccessException("not impemented yex")
+
+        return other
+    }
 
 }

@@ -36,6 +36,14 @@ enum class Product(val productName: String, val queryParameter: Set<QueryParamet
     V3_WX_SKICONDITIONS("v3-wx-skiconditions"),
     V3_LOCATION_POINT("v3-location-point", setOf(LANGUAGE));
 
+
+//TODO
+//    v2idxDrySkinDaypart15
+
+
+
+
+
 //    v3-location-search, this will not work as a standalone in the agg call
 
 

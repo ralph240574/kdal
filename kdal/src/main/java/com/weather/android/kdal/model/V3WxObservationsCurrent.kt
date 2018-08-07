@@ -20,10 +20,10 @@ data class V3WxObservationsCurrent(
         val pressureTendencyTrend: String, // Falling
         val relativeHumidity: Int, // 81
         val snow24Hour: Double?, // 0.0
-        val sunriseTimeLocal: String, // 2018-07-09T06:33:18-0500
-        val sunriseTimeUtc: Long, // 1531135998
-        val sunsetTimeLocal: String, // 2018-07-09T20:27:48-0500
-        val sunsetTimeUtc: Long, // 1531186068
+        val sunriseTimeLocal: String?, // 2018-07-09T06:33:18-0500
+        val sunriseTimeUtc: Long?, // 1531135998
+        val sunsetTimeLocal: String?, // 2018-07-09T20:27:48-0500
+        val sunsetTimeUtc: Long?, // 1531186068
         val temperature: Int, // 79
         val temperatureChange24Hour: Int, // -1
         val temperatureDewPoint: Int, // 72
