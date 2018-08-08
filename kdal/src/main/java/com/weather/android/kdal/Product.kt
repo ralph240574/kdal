@@ -1,6 +1,8 @@
 package com.weather.android.kdal
 
+
 import com.weather.android.kdal.QueryParameter.*
+
 
 enum class Product(val productName: String, val queryParameter: Set<QueryParameter> = setOf(LANGUAGE, UNITS)) {
 
@@ -19,6 +21,7 @@ enum class Product(val productName: String, val queryParameter: Set<QueryParamet
     V2_GLOBALAIR("v2globalair", setOf(LANGUAGE)),
     V2_IDX_BREATHING_DAYPART15("V2idxBreathingDaypart15", setOf(LANGUAGE)),
     V2_IDX_DRIVE_CURRENT("V2idxDriveCurrent", setOf(LANGUAGE)),
+    V2_IDX_DRY_SKIN_DAYPART15("v2idxDrySkinDaypart15", setOf(LANGUAGE)),
     V2_IDX_POLLEN_DAYPART_15("v2idxPollenDaypart15", setOf(LANGUAGE)),
     V2_IDX_RUN_DAY_PART15("v2idxRunDaypart15", setOf(LANGUAGE)),
     V2_IDX_MOSQUITO_DAILY_3("v2idxMosquitoDaily3", setOf(LANGUAGE)),
@@ -37,13 +40,6 @@ enum class Product(val productName: String, val queryParameter: Set<QueryParamet
     V3_LOCATION_POINT("v3-location-point", setOf(LANGUAGE));
 
 
-//TODO
-//    v2idxDrySkinDaypart15
-
-
-
-
-
 //    v3-location-search, this will not work as a standalone in the agg call
 
 
@@ -58,7 +54,9 @@ enum class Product(val productName: String, val queryParameter: Set<QueryParamet
 
     }
 
+
 }
+
 
 
 

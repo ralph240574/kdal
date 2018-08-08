@@ -20,7 +20,7 @@ val LOGGING: okhttp3.Interceptor = Interceptor { chain ->
 }
 
 
-class ApiKeyInterceptor(private val queryParameterForApiKey: String, private val apiKey: String) : okhttp3.Interceptor {
+internal class ApiKeyInterceptor(private val queryParameterForApiKey: String, private val apiKey: String) : okhttp3.Interceptor {
 
 
     constructor(v3ApiKey: String) : this("apiKey", v3ApiKey) {}
@@ -39,7 +39,7 @@ class ApiKeyInterceptor(private val queryParameterForApiKey: String, private val
     }
 }
 
-class RewriteResponse(private val maxCacheAgeInSec: Int) : okhttp3.Interceptor {
+internal class RewriteResponse(private val maxCacheAgeInSec: Int) : okhttp3.Interceptor {
 
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {

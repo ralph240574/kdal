@@ -3,7 +3,7 @@ package com.weather.android.kdal.model
 import com.weather.android.kdal.util.validateNoNullsInList
 
 //adapter generation does not seem to work for List with nullables elements,
-//but moshi can handle this alone
+//but moshi can handle this alone, but nullability is not enforced
 //@JsonClass(generateAdapter = true)
 data class V3WxConditionsHistoricalHourly(
         val cloudCeiling: List<Int?>,
@@ -44,6 +44,42 @@ data class V3WxConditionsHistoricalHourly(
         val wxPhraseLong: List<String?>
 ) {
     fun validate() {
+        checkNotNull(cloudCeiling)
+        checkNotNull(dayOfWeek)
+        checkNotNull(dayOrNight)
+        checkNotNull(expirationTimeUtc)
+        checkNotNull(iconCode)
+        checkNotNull(precip24Hour)
+        checkNotNull(pressureAltimeter)
+        checkNotNull(pressureChange)
+        checkNotNull(pressureMeanSeaLevel)
+        checkNotNull(pressureTendencyCode)
+        checkNotNull(pressureTendencyTrend)
+        checkNotNull(relativeHumidity)
+        checkNotNull(snow24Hour)
+        checkNotNull(sunriseTimeLocal)
+        checkNotNull(sunriseTimeUtc)
+        checkNotNull(temperature)
+        checkNotNull(temperatureChange24Hour)
+        checkNotNull(temperatureDewPoint)
+        checkNotNull(temperatureFeelsLike)
+        checkNotNull(temperatureHeatIndex)
+        checkNotNull(temperatureMax24Hour)
+        checkNotNull(temperatureMaxSince7Am)
+        checkNotNull(temperatureMin24Hour)
+        checkNotNull(temperatureWindChill)
+        checkNotNull(uvDescription)
+        checkNotNull(uvIndex)
+        checkNotNull(validTimeLocal)
+        checkNotNull(validTimeUtc)
+        checkNotNull(visibility)
+        checkNotNull(windDirection)
+        checkNotNull(windDirectionCardinal)
+        checkNotNull(windGust)
+        checkNotNull(windSpeed)
+        checkNotNull(wxPhraseLong)
+
+
         dayOfWeek.validateNoNullsInList()
         dayOrNight.validateNoNullsInList()
         expirationTimeUtc.validateNoNullsInList()

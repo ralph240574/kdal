@@ -6,7 +6,7 @@ import io.reactivex.Single
 import retrofit2.http.*
 
 
-interface V3AggInterface {
+internal interface V3AggInterface {
 
     @Headers("Cache-Control: max-age=0")
     @GET("v3/aggcommon/{path}?format=json")

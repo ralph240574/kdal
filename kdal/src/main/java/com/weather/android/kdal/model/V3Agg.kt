@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
+
 //TODO datestamp of retrieval ??
 
 @JsonClass(generateAdapter = true)
@@ -32,6 +33,8 @@ data class V3Agg(
         val vt1runweatherhourly: Vt1runweatherhourly?,
 
         val vt1wwir: Vt1wwir?,
+
+        val v2idxDrySkinDaypart15: V2idxDrySkinDaypart15?,
 
         @SerializedName(value = "V2fcstintraday3")
         @Json(name = "V2fcstintraday3")
@@ -126,6 +129,7 @@ data class V3Agg(
         v3WxIndicesPollenHistorical1day?.validate()
 
         v3WxConditionsHistoricalDailysummary30day?.validate()
+        v3WxConditionsHistoricalHourly1day?.validate()
 
         vt1precipitation?.validate()
         vt1lightning?.validate()

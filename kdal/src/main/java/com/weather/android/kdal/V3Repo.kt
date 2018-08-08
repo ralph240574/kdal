@@ -45,7 +45,7 @@ class V3Repo constructor(
         NETWORK_ONLY // do not use cache use only network
     }
 
-    val repo: V3AggInterface = Retrofit.Builder()
+    private val repo: V3AggInterface = Retrofit.Builder()
             .baseUrl(baseUrl)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(moshiConverterFactory())

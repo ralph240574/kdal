@@ -102,13 +102,4 @@ data class V3alertsHeadlines(
         }
     }
 
-    fun Alert.highestPriorityAlert(){
-
-
-
-    }
-
-
-
-
 }

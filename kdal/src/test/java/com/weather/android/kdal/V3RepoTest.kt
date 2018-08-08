@@ -123,8 +123,11 @@ class V3RepoTest {
 //        testProduct(Product.V3_WX_OBSERVATIONS_CURRENT)
 //        testProduct(Product.VT1_CURRENT_TIDES)
 //        testProduct(Product.V3_WX_CONDITIONS_HISTORICAL_DAILYSUMMARY_30_DAY)
-        testProduct(Product.V3_WX_FORECAST_DAILY_15_DAY)
+//        testProduct(Product.V3_WX_FORECAST_DAILY_15_DAY)
 
+//        testProduct(Product.V3_WX_CONDITIONS_HISTORICAL_HOURLY_1_DAY)
+
+        testProduct(Product.V2_IDX_DRY_SKIN_DAYPART15)
 
 //        val v3WxObsJson = """ {"id": "19.09,72.88",  "v3-wx-observations-current":
 //
@@ -151,9 +154,10 @@ class V3RepoTest {
             v3Repo.latLng = it
 
             val observable =
-                    v3Repo.getV3AggFromNetwork(
+                    v3Repo.getV3Agg(
                             setOf(prod),
-                            latLng = v3Repo.latLng)
+                            latLng = v3Repo.latLng,
+                            setMode = V3Repo.Mode.NETWORK_ONLY)
 
             observable
 //                .observeOn(AndroidSchedulers.mainThread())s
@@ -187,7 +191,7 @@ class V3RepoTest {
 
 
     fun checkV3Agg(prod: Product, v3Agg: V3Agg?) {
-//        Assert.assertNotNull(v3Agg)
+        Assert.assertNotNull(v3Agg)
 
         val field = V3Agg::class.memberProperties.first {
             it.name.toLowerCase(Locale.US) == prod.toString().toLowerCase(Locale.US).replace("-", "")
