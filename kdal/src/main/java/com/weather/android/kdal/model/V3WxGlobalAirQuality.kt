@@ -123,4 +123,15 @@ data class V3WxGlobalAirQuality(
         }
     }
 
+    enum class SCALE_PARAMETER_VALUE {
+        EPA,
+        HJ6332012,
+        ATMO,
+        UBA,
+        DAQI,
+        NAQI,
+        IMECA,
+        CAQI
+    }
+
 }

@@ -24,16 +24,11 @@ class ParsingTest {
 
         val v3DailyForecast = File("src/test/data/V3Daily.json").readText(Charsets.UTF_8)
 
-
-//        val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
-
         val moshi = Moshi.Builder().build()
 
         val adapter = moshi.adapter<V3Agg>(V3Agg::class.java)
 
-
         val v3Agg = adapter.fromJson(v3DailyForecast)
-
 
         val daily = v3Agg?.v3WxForecastDaily15day
 
@@ -107,7 +102,7 @@ class ParsingTest {
 
         println(hist)
 
-hist.validate()
+        hist.validate()
     }
 
     @Test
@@ -127,5 +122,15 @@ hist.validate()
 //        println(tides.height.javaClass.name)
 
 
+    }
+
+
+    @Test
+    fun testUtil() {
+
+        val v3Agg = V3Repo.getV3AggFromFile("src/test/data/v3Agg.json")
+
+
+        println(v3Agg)
     }
 }

@@ -4,6 +4,7 @@ import android.util.Log
 import com.squareup.moshi.Moshi
 import com.weather.android.kdal.Product.Companion.asString
 import com.weather.android.kdal.model.V3Agg
+import com.weather.android.kdal.model.V3WxGlobalAirQuality.SCALE_PARAMETER_VALUE.EPA
 import com.weather.android.kdal.network.ApiKeyInterceptor
 import com.weather.android.kdal.network.LOGGING
 import com.weather.android.kdal.network.RewriteResponse
@@ -90,6 +91,22 @@ class V3Repo constructor(
         fun newV3Repo(apiKey: String, cacheDir: File, logging: Boolean): V3Repo {
             return V3Repo(apiKey, cacheDir, loggingEnabled = logging)
         }
+
+
+        /**
+         * utility for Testing
+         */
+        @JvmStatic
+        fun getV3AggFromFile(path: String): V3Agg? {
+
+            val moshi = Moshi.Builder().build()
+
+            val jsonAdapter = moshi.adapter(V3Agg::class.java)
+
+            val jsonString = File(path).readText()
+            return jsonAdapter.fromJson(jsonString)
+        }
+
     }
 
     @Volatile
@@ -97,6 +114,9 @@ class V3Repo constructor(
 
     @Volatile
     var units: Units = Units.ENGLISH
+
+    @Volatile
+    var v3GlobalAirScaleParameterValue = EPA
 
     @Volatile
     var locale: Locale = Locale.US
@@ -115,10 +135,9 @@ class V3Repo constructor(
                  setMode: Mode = mode)
             : Observable<V3Agg> {
 
-        val fromCache = getV3AggFromCache(products, latLng = latLng, maxAgeResponse = maxAgeResponseCache)
+        val fromCache = getV3AggFromCache(products, latLng = latLng, maxAgeResponseInSec = maxAgeResponseCache)
 
         val fromNetwork = getV3AggFromNetwork(products, latLng = latLng)
-
 
         return when (setMode) {
             Mode.OFFLINE -> fromCache.toObservable()
@@ -127,7 +146,6 @@ class V3Repo constructor(
             Mode.NETWORK_FIRST -> fromNetwork.toObservable().onErrorResumeNext(fromCache.toObservable())
             Mode.NETWORK_ONLY -> fromNetwork.toObservable()
         }
-
 
     }
 
@@ -149,8 +167,12 @@ class V3Repo constructor(
                 getScaleParameter(queryParameters),
                 latLng.toQueryParameter(),
                 getUnitsParameter(queryParameters))
-                .doOnSuccess({ it.validate() })
-                .doOnError { t: Throwable -> Log.e(TAG, t.toString(), t) }
+                .doOnSuccess({
+                    it.validate()
+                })
+                .doOnError { t: Throwable ->
+                    Log.e(TAG, t.toString(), t)
+                }
     }
 
 
@@ -159,12 +181,12 @@ class V3Repo constructor(
      */
     fun getV3AggFromCache(products: Set<Product>,
                           latLng: LatLng = this.latLng,
-                          maxAgeResponse: Int = MAX_CACHE_AGE_IN_SEC)
+                          maxAgeResponseInSec: Int = MAX_CACHE_AGE_IN_SEC)
             : Single<V3Agg> {
 
         val queryParameters: Set<QueryParameter> = getQueryParameters(products)
 
-        val dynamicHeaderMap = mapOf(Pair("Cache-Control", "max-age=${maxAgeResponse}, only-if-cached"))
+        val dynamicHeaderMap = mapOf(Pair("Cache-Control", "max-age=${maxAgeResponseInSec}, only-if-cached"))
 
         return repo.getV3AggFromCache(dynamicHeaderMap,
                 asString(products),
@@ -175,6 +197,7 @@ class V3Repo constructor(
                 getUnitsParameter(queryParameters))
     }
 
+
     /**
      * This will calculate the required set of query parameters based on the selected Products
      */
@@ -183,9 +206,8 @@ class V3Repo constructor(
         return queryParameters
     }
 
-    //TODO check what to use
     private fun getScaleParameter(queryParameters: Set<QueryParameter>): String? =
-            if (queryParameters.contains(QueryParameter.SCALE)) "EPA" else null
+            if (queryParameters.contains(QueryParameter.SCALE)) v3GlobalAirScaleParameterValue.toString() else null
 
     //TODO check what date to use
     private fun getPollenDate(queryParameters: Set<QueryParameter>): String? =
@@ -207,6 +229,5 @@ class V3Repo constructor(
     fun getLocaleString(locale: Locale): String {
         return if ("" != locale.country) locale.language + "-" + locale.country else locale.language
     }
-
 
 }

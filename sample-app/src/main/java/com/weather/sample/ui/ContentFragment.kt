@@ -34,7 +34,6 @@ abstract class ContentFragment : Fragment() {
             Product.V2_IDX_DRIVE_CURRENT,
             Product.VT1_POLLENOBS,
             Product.VT1_LIGHTNING,
-            Product.V2_GLOBALAIR,
             Product.V2_IDX_DRY_SKIN_DAYPART15,
             Product.VT1_WWIR,
             Product.VT1_ALERTS,

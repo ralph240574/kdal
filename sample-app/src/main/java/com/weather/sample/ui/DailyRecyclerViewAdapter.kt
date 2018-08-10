@@ -48,11 +48,11 @@ class DailyRecyclerViewAdapter(private val v3WxForecastDaily: V3WxForecastDaily)
             formatText(holder.dayTemp, "%d F", daypart.temperature[dayIndex])
             formatText(holder.nightTemp, "%d F", daypart.temperature[nightIndex])
 
-            val dayDir = daypart.windDirection[dayIndex]
+            val dayDir = daypart.windDirectionCardinal[dayIndex]
             val daySpeed = daypart.windSpeed[dayIndex]
             formatText(holder.dayWind, "%1\$s %2\$d MPH", dayDir, daySpeed)
 
-            val nightDir = daypart.windDirection[nightIndex]
+            val nightDir = daypart.windDirectionCardinal[nightIndex]
             val nightSpeed = daypart.windSpeed[nightIndex]
             formatText(holder.nightWind, "%1\$s %2\$d MPH", nightDir, nightSpeed)
         }

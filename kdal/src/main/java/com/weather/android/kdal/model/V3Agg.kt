@@ -3,6 +3,7 @@ package com.weather.android.kdal.model
 import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import com.squareup.moshi.Moshi
 
 
 //TODO datestamp of retrieval ??
@@ -39,8 +40,6 @@ data class V3Agg(
         @SerializedName(value = "V2fcstintraday3")
         @Json(name = "V2fcstintraday3")
         val v2fcstintraday3: V2fcstintraday3?,
-
-        val v2globalair: V2globalair?,
 
         @SerializedName(value = "V2idxBreathingDaypart15")
         @Json(name = "V2idxBreathingDaypart15")
@@ -111,7 +110,6 @@ data class V3Agg(
     fun validate() {
 
         v2fcstintraday3?.validate()
-        v2globalair?.validate()
         v2idxBreathingDaypart15?.validate()
         v2idxPollenDaypart15?.validate()
 
@@ -143,6 +141,19 @@ data class V3Agg(
         IllegalAccessException("not impemented yex")
 
         return other
+    }
+
+
+    fun fromFile(path: String): V3Agg? {
+
+        val moshi = Moshi.Builder().build()
+
+        val jsonAdapter = moshi.adapter(V3Agg::class.java)
+
+
+        val jsonString = ""
+
+        return jsonAdapter.fromJson(jsonString)
     }
 
 }

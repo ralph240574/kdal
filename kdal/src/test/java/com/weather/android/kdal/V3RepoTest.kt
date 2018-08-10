@@ -1,6 +1,7 @@
 package com.weather.android.kdal
 
 import com.weather.android.kdal.model.V3Agg
+import com.weather.android.kdal.model.V3WxGlobalAirQuality
 import com.weather.android.kdal.util.formatHHmm
 import com.weather.android.kdal.util.getTimeOffset
 import com.weather.android.kdal.util.toDate
@@ -20,7 +21,7 @@ class V3RepoTest {
     val apiKey = "8de2d8b3a93542c9a2d8b3a935a2c909"
 
 
-    var v3Repo = V3Repo(apiKey = apiKey, baseUrl = "http://api.weather.com", cacheDir = File("./cache"), loggingEnabled = true)
+    var v3Repo = V3Repo(apiKey = apiKey, baseUrl = "https://api.weather.com", cacheDir = File("./cache"), loggingEnabled = true)
 
     val products = setOf(
 
@@ -36,7 +37,6 @@ class V3RepoTest {
             Product.VT1_RUNWEATHERHOURLY,
             Product.VT1_WWIR,
             Product.V2_FCSTINTRADAY3,
-            Product.V2_GLOBALAIR,
             Product.V2_IDX_BREATHING_DAYPART15,
             Product.V2_IDX_DRIVE_CURRENT,
             Product.V2_IDX_POLLEN_DAYPART_15,
@@ -71,7 +71,9 @@ class V3RepoTest {
     val rome = LatLng(41.90, 12.49)
     val cairo = LatLng(30.0594698, 31.18)
 
-    val latlongs = listOf(atl, nyc, dehli, jakarta, mumbai, la, berlin, paris, london, tokyo, moscow, rome, cairo)
+    val latlongs = listOf(atl)
+
+//    listOf(atl, nyc, dehli, jakarta, mumbai, la, berlin, paris, london, tokyo, moscow, rome, cairo)
 
 
     @Before
@@ -127,7 +129,25 @@ class V3RepoTest {
 
 //        testProduct(Product.V3_WX_CONDITIONS_HISTORICAL_HOURLY_1_DAY)
 
-        testProduct(Product.V2_IDX_DRY_SKIN_DAYPART15)
+
+        v3Repo.v3GlobalAirScaleParameterValue = V3WxGlobalAirQuality.SCALE_PARAMETER_VALUE.EPA
+        testProduct(Product.V3_WX_GLOBAL_AIR_QUALITY)
+
+//        v3Repo.v3GlobalAirScaleParameterValue = V3WxGlobalAirQuality.SCALE_PARAMETER_VALUE.HJ6332012
+//        testProduct(Product.V3_WX_GLOBAL_AIR_QUALITY)
+//        v3Repo.v3GlobalAirScaleParameterValue = V3WxGlobalAirQuality.SCALE_PARAMETER_VALUE.ATMO
+//        testProduct(Product.V3_WX_GLOBAL_AIR_QUALITY)
+//        v3Repo.v3GlobalAirScaleParameterValue = V3WxGlobalAirQuality.SCALE_PARAMETER_VALUE.UBA
+//        testProduct(Product.V3_WX_GLOBAL_AIR_QUALITY)
+//        v3Repo.v3GlobalAirScaleParameterValue = V3WxGlobalAirQuality.SCALE_PARAMETER_VALUE.DAQI
+//        testProduct(Product.V3_WX_GLOBAL_AIR_QUALITY)
+//        v3Repo.v3GlobalAirScaleParameterValue = V3WxGlobalAirQuality.SCALE_PARAMETER_VALUE.NAQI
+//        testProduct(Product.V3_WX_GLOBAL_AIR_QUALITY)
+//
+//        v3Repo.v3GlobalAirScaleParameterValue = V3WxGlobalAirQuality.SCALE_PARAMETER_VALUE.IMECA
+//        testProduct(Product.V3_WX_GLOBAL_AIR_QUALITY)
+//        v3Repo.v3GlobalAirScaleParameterValue = V3WxGlobalAirQuality.SCALE_PARAMETER_VALUE.CAQI
+//        testProduct(Product.V3_WX_GLOBAL_AIR_QUALITY)
 
 //        val v3WxObsJson = """ {"id": "19.09,72.88",  "v3-wx-observations-current":
 //
@@ -199,6 +219,7 @@ class V3RepoTest {
 
         if (v3Agg != null) {
             println(field.get(v3Agg))
+            print(v3Agg)
         }
     }
 
@@ -223,6 +244,11 @@ class V3RepoTest {
         testProduct(Product.V3_WX_CONDITIONS_HISTORICAL_DAILYSUMMARY_30_DAY)
 //        testProduct(Product.V2_GLOBALAIR)
 
+    }
+
+
+    @Test
+    fun fromFile() {
 
     }
 }
