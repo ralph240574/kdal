@@ -68,8 +68,8 @@ class V3RepoImpl constructor(
 
 
         @JvmStatic
-        fun newV3Repo(apiKey: String, cacheDir: File, baseUrl: String, logging: Boolean): V3Repo {
-            return V3RepoImpl(apiKey, cacheDir, baseUrl, loggingEnabled = logging)
+        fun newV3Repo(apiKey: String, cacheDir: File, baseUrl: String = BASE_URL, logging: Boolean): V3Repo {
+            return V3RepoImpl(apiKey = apiKey, cacheDir = cacheDir, baseUrl = baseUrl, loggingEnabled = logging)
         }
 
 
