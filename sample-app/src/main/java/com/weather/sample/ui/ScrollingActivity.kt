@@ -46,13 +46,13 @@ class ScrollingActivity : AppCompatActivity() {
     }
 
     private fun loadDataNetworkOnly() {
-        val observable = v3Repo.getV3AggFromNetwork(setOf(Product.V3_WX_OBSERVATIONS_CURRENT))
+        val observable = v3Repo.getV3Agg(setOf(Product.V3_WX_OBSERVATIONS_CURRENT), mode = V3Repo.Mode.NETWORK_ONLY)
 
         compositeDisposable.add(observable
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribeBy(
-                        onSuccess = { v3Agg -> handleData(v3Agg) },
+                        onNext = { v3Agg -> handleData(v3Agg) },
                         onError = { t -> handleError(t) }))
     }
 

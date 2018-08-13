@@ -8,6 +8,7 @@ data class V2idxPollenDaypart15(
         val metadata: Metadata,
         val pollenForecast12hour: PollenForecast12hour
 ) {
+    @JsonClass(generateAdapter = true)
     data class Metadata(
             val language: String, // en-US
             val transactionId: String, // 1531160039954:146197209
@@ -18,6 +19,7 @@ data class V2idxPollenDaypart15(
             val statusCode: Int // 200
     )
 
+    @JsonClass(generateAdapter = true)
     data class PollenForecast12hour(
             val fcstValid: List<Long>,
             val fcstValidLocal: List<String>,

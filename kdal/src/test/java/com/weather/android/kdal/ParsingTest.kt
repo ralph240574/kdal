@@ -3,6 +3,7 @@ package com.weather.android.kdal
 import com.squareup.moshi.Moshi
 import com.weather.android.kdal.model.V3Agg
 import com.weather.android.kdal.model.Vt1currentTides
+import org.junit.Assert.assertNotNull
 import org.junit.Test
 import java.io.File
 
@@ -10,82 +11,62 @@ import java.io.File
 class ParsingTest {
 
 
-    @Test
-    fun testParsing() {
+    val adapter = Moshi.Builder().build().adapter<V3Agg>(V3Agg::class.java)
 
-        val vt1currentTidesJson = """ {
-                         "id": "29.19,-96.27",
-            "vt1currentTides":
-                             {"type":[null,"H","L","H","L","H","L"],
-                              "time":["2018-08-01T02:31:00-0500","2018-08-01T10:17:00-0500","2018-08-01T14:20:00-0500","2018-08-01T18:43:00-0500","2018-08-02T02:52:00-0500","2018-08-02T10:11:00-0500","2018-08-02T15:39:00-0500"],
-                              "height":[null,0.3,0.3,0.3,0.2,0.3,null]}
-        }"""
-
-
-        val v3DailyForecast = File("src/test/data/V3Daily.json").readText(Charsets.UTF_8)
-
-        val moshi = Moshi.Builder().build()
-
-        val adapter = moshi.adapter<V3Agg>(V3Agg::class.java)
-
-        val v3Agg = adapter.fromJson(v3DailyForecast)
-
-        val daily = v3Agg?.v3WxForecastDaily15day
-
-        daily?.validate()
-
-        println(daily?.moonPhaseDay)
-
-//        println(v3Agg?.v3WxObservationsCurrent)
-//
-//        println(v3Agg?.v3WxObservationsCurrent?.cloudCoverPhrase == null)
-
-        val tides = v3Agg?.vt1currentTides
-
-        tides?.height?.forEach {
-            println(it)
-        }
-
-//        tides?.height?.validateNoNullsInList()
-
-        tides?.type?.forEach {
-            println(it == null)
-        }
-
-
-    }
 
     @Test
     fun testParseV3Obs() {
 
-        val adapter = Moshi.Builder().build().adapter<V3Agg>(V3Agg::class.java)
-
         val v3wxObservationsCurrent = File("src/test/data/v3-wx-observations-current.json").readText(Charsets.UTF_8)
 
+        val start = System.currentTimeMillis()
         val v3Agg = adapter.fromJson(v3wxObservationsCurrent)
 
         val obs = v3Agg?.v3WxObservationsCurrent
 
+
+        println("${System.currentTimeMillis() - start} ms")
         println(obs)
 
     }
 
 
     @Test
-    fun testParseV3fcstIntraday3() {
+    fun testParseV2fcstIntraday3() {
 
-        val adapter = Moshi.Builder().build().adapter<V3Agg>(V3Agg::class.java)
-
-        val v2fcstintraday3 = File("src/test/data/v2fcstintraday3.json").readText(Charsets.UTF_8)
+        val v2fcstintraday3 = File("src/test/data/v2fcstintraday3.json").readText()
 
         val v3Agg = adapter.fromJson(v2fcstintraday3)
 
+        println(v3Agg)
+
         val fcst = v3Agg?.v2fcstintraday3!!
 
+        assertNotNull(v3Agg.v2fcstintraday3)
+    }
 
-        fcst.forecasts.forEach {
-            println(it)
-        }
+    @Test
+    fun testV2idxBreathingDaypart() {
+
+        val v2idxBreathingDaypart15 = File("src/test/data/V2idxBreathingDaypart15.json").readText(Charsets.UTF_8)
+
+        val start = System.currentTimeMillis()
+
+        val v3Agg = adapter.fromJson(v2idxBreathingDaypart15)
+
+        println("${System.currentTimeMillis() - start} ms")
+
+        println(v3Agg?.v2idxBreathingDaypart15)
+        v3Agg?.v2idxBreathingDaypart15?.validate()
+        assertNotNull(v3Agg?.v2idxBreathingDaypart15)
+    }
+
+    @Test
+    fun testV2idxDriveCurrent() {
+        val v2idxDriveCurrent = File("src/test/data/v2idxDriveCurrent.json").readText(Charsets.UTF_8)
+        val v3Agg = adapter.fromJson(v2idxDriveCurrent)
+        println(v3Agg)
+        assertNotNull(v3Agg?.v2idxDriveCurrent)
     }
 
 
@@ -95,13 +76,13 @@ class ParsingTest {
         val adapter = Moshi.Builder().build().adapter<V3Agg>(V3Agg::class.java)
 
         val histJson = File("src/test/data/v3-wx-conditions-historical-dailysummary-30day.json").readText(Charsets.UTF_8)
-
+        val start = System.currentTimeMillis()
         val v3Agg = adapter.fromJson(histJson)
+        println("${System.currentTimeMillis() - start} ms")
 
         val hist = v3Agg?.v3WxConditionsHistoricalDailysummary30day!!
-
+        assertNotNull(hist)
         println(hist)
-
         hist.validate()
     }
 
@@ -128,7 +109,7 @@ class ParsingTest {
     @Test
     fun testUtil() {
 
-        val v3Agg = V3Repo.getV3AggFromFile("src/test/data/v3Agg.json")
+        val v3Agg = V3RepoImpl.getV3AggFromFile("src/test/data/v3Agg.json")
 
 
         println(v3Agg)

@@ -8,6 +8,7 @@ data class V2idxBreathingDaypart(
         val metadata: Metadata,
         val breathingIndex12hour: BreathingIndex12hour
 ) {
+    @JsonClass(generateAdapter = true)
     data class BreathingIndex12hour(
             val fcstValid: List<Long>,
             val fcstValidLocal: List<String>,
@@ -18,6 +19,7 @@ data class V2idxBreathingDaypart(
             val breathingCategory: List<String>
     )
 
+    @JsonClass(generateAdapter = true)
     data class Metadata(
             val language: String, // en-US
             val transactionId: String, // 1531162260091:72086062

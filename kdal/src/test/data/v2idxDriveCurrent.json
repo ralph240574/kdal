@@ -1,0 +1,22 @@
+{
+  "id": "29.19,-96.27",
+  "v2idxDriveCurrent": {
+    "metadata": {
+      "language": "en-US",
+      "transactionId": "1534192624424:-1882987472",
+      "version": "1",
+      "latitude": 29.19,
+      "longitude": -96.27,
+      "expireTimeGmt": 1534193180,
+      "statusCode": 200
+    },
+    "drivingDifficultyIndexCurrent": {
+      "obsTime": 1534192580,
+      "obsTimeLocal": "2018-08-13T15:36:20-0500",
+      "dow": "Monday",
+      "dayInd": "D",
+      "drivingDifficultyIndex": 0,
+      "drivingDifficultyCategory": "None"
+    }
+  }
+}

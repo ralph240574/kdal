@@ -1,0 +1,117 @@
+{
+  "id": "29.19,-96.27",
+  "v2idxMosquitoDaily3": {
+    "metadata": {
+      "language": "en-US",
+      "transactionId": "1534195006361:-630812467",
+      "version": "1",
+      "latitude": 29.19,
+      "longitude": -96.27,
+      "expireTimeGmt": 1534196402,
+      "statusCode": 200
+    },
+    "mosquitoIndex24hour": {
+      "fcstValid": [
+        1534161600,
+        1534248000,
+        1534334400,
+        1534420800
+      ],
+      "fcstValidLocal": [
+        "2018-08-13T07:00:00-0500",
+        "2018-08-14T07:00:00-0500",
+        "2018-08-15T07:00:00-0500",
+        "2018-08-16T07:00:00-0500"
+      ],
+      "dow": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday"
+      ],
+      "num": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "eveningMosquitoIndex": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "eveningMosquitoCategory": [
+        "High Activity",
+        "High Activity",
+        "High Activity",
+        "High Activity"
+      ]
+    },
+    "mosquitoIndex12hour": {
+      "fcstValid": [
+        1534204800,
+        1534248000,
+        1534291200,
+        1534334400,
+        1534377600,
+        1534420800,
+        1534464000
+      ],
+      "fcstValidLocal": [
+        "2018-08-13T19:00:00-0500",
+        "2018-08-14T07:00:00-0500",
+        "2018-08-14T19:00:00-0500",
+        "2018-08-15T07:00:00-0500",
+        "2018-08-15T19:00:00-0500",
+        "2018-08-16T07:00:00-0500",
+        "2018-08-16T19:00:00-0500"
+      ],
+      "dayInd": [
+        "N",
+        "D",
+        "N",
+        "D",
+        "N",
+        "D",
+        "N"
+      ],
+      "num": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "daypartName": [
+        "Tonight",
+        "Tomorrow",
+        "Tomorrow night",
+        "Wednesday",
+        "Wednesday night",
+        "Thursday",
+        "Thursday night"
+      ],
+      "mosquitoIndex": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "mosquitoCategory": [
+        "Moderate Activity",
+        "Moderate Activity",
+        "Moderate Activity",
+        "Moderate Activity",
+        "Moderate Activity",
+        "Moderate Activity",
+        "Moderate Activity"
+      ]
+    }
+  }
+}

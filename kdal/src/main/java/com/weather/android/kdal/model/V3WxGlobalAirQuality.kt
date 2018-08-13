@@ -1,6 +1,5 @@
 package com.weather.android.kdal.model
 
-import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -23,10 +22,8 @@ data class V3WxGlobalAirQuality(
             val expireTimeGmt: Long // 1531162800
     ) {
         data class Messages(
-                @SerializedName(value = "Sensitive Group")
                 @Json(name = "Sensitive Group")
                 val sensitiveGroup: SensitiveGroup,
-                @SerializedName(value = "General")
                 @Json(name = "General")
                 val general: General
         ) {
@@ -42,22 +39,16 @@ data class V3WxGlobalAirQuality(
         }
 
         data class Pollutants(
-                @SerializedName(value = "NO2")
                 @Json(name = "NO2")
                 val nO2: NO2,
-                @SerializedName(value = "O3")
                 @Json(name = "O3")
                 val o3: O3,
-                @SerializedName(value = "SO2")
                 @Json(name = "SO2")
                 val sO2: SO2,
-                @SerializedName(value = "PM2.5")
                 @Json(name = "PM2.5")
                 val pM25: PM25,
-                @SerializedName(value = "PM10")
                 @Json(name = "PM10")
                 val pM10: PM10,
-                @SerializedName(value = "CO")
                 @Json(name = "CO")
                 val cO: CO
         ) {

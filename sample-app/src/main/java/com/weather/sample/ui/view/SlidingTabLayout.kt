@@ -124,7 +124,7 @@ class SlidingTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
 
         mViewPager = viewPager
         if (viewPager != null) {
-            viewPager.setOnPageChangeListener(InternalViewPagerListener())
+            viewPager.addOnPageChangeListener(InternalViewPagerListener())
             populateTabStrip()
         }
     }

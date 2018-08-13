@@ -21,6 +21,20 @@ data class V3WxConditionsHistoricalDailysummary(
 ) {
 
     fun validate() {
+
+        dayOfWeek!!
+        iconCodeDay!!
+        iconCodeNight!!
+        precip24Hour!!
+        rain24Hour!!
+        snow24Hour!!
+        temperatureMax!!
+        temperatureMin!!
+        validTimeLocal!!
+        validTimeUtc!!
+        wxPhraseLongDay!!
+        wxPhraseLongNight!!
+
         dayOfWeek.validateNoNullsInList()
         validTimeLocal.validateNoNullsInList()
         validTimeUtc.validateNoNullsInList()

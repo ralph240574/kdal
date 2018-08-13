@@ -49,7 +49,7 @@ ext {
 
     VERSION_MAJOR = 0
     VERSION_MINOR = 1
-    VERSION_MICRO = 1
+    VERSION_MICRO = 2
 
     VERSION_EXTENSION = SNAPSHOT ? "-SNAPSHOT" : ""
     VERSION = "$VERSION_MAJOR.$VERSION_MINOR.$VERSION_MICRO$VERSION_EXTENSION"
@@ -62,7 +62,6 @@ ext {
     MVN_USERNAME = artifactory_username
     MVN_PASSWORD = artifactory_password
 }
-
 
 /**
  *  Run "./gradlew artifactoryPublish" to publish the artifacts

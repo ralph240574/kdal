@@ -27,19 +27,16 @@ abstract class ContentFragment : Fragment() {
     lateinit var v3Repo: V3Repo
 
     val products = setOf(
-            Product.VT1_IDX_POLLEN_DAYPART,
-            Product.VT1_RUNWEATHERHOURLY,
             Product.VT1_PRECIPITATION,
             Product.VT1_CURRENT_TIDES,
-            Product.V2_IDX_DRIVE_CURRENT,
             Product.VT1_POLLENOBS,
             Product.VT1_LIGHTNING,
             Product.V2_IDX_DRY_SKIN_DAYPART15,
             Product.VT1_WWIR,
             Product.VT1_ALERTS,
             Product.VT1_CONTENT_MODE,
-            Product.VT1_IDX_BREATHING_DAYPART,
             Product.V2_FCSTINTRADAY3,
+            Product.V3_WX_GLOBAL_AIR_QUALITY,
             Product.V3_WX_OBSERVATIONS_CURRENT,
             Product.V3_ALERTS_HEADLINES,
             Product.V3_WX_CONDITIONS_HISTORICAL_DAILYSUMMARY_30_DAY,

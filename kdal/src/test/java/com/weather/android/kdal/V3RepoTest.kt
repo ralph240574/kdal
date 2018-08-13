@@ -21,24 +21,20 @@ class V3RepoTest {
     val apiKey = "8de2d8b3a93542c9a2d8b3a935a2c909"
 
 
-    var v3Repo = V3Repo(apiKey = apiKey, baseUrl = "https://api.weather.com", cacheDir = File("./cache"), loggingEnabled = true)
+    var v3Repo = V3RepoImpl(apiKey = apiKey, baseUrl = "https://api.weather.com", cacheDir = File("./cache"), loggingEnabled = true)
 
     val products = setOf(
 
             Product.VT1_ALERTS,
             Product.VT1_CONTENT_MODE,
             Product.VT1_CURRENT_TIDES,
-            Product.VT1_IDX_BREATHING_DAYPART,
-            Product.VT1_IDX_POLLEN_DAYPART,
             Product.VT1_LIGHTNING,
             Product.VT1_NOWCAST,
             Product.VT1_POLLENOBS,
             Product.VT1_PRECIPITATION,
-            Product.VT1_RUNWEATHERHOURLY,
             Product.VT1_WWIR,
             Product.V2_FCSTINTRADAY3,
             Product.V2_IDX_BREATHING_DAYPART15,
-            Product.V2_IDX_DRIVE_CURRENT,
             Product.V2_IDX_POLLEN_DAYPART_15,
             Product.V2_IDX_RUN_DAY_PART15,
             Product.V3_ALERTS_HEADLINES,
@@ -113,6 +109,11 @@ class V3RepoTest {
 
 
     @Test
+    fun testIntraDay() {
+        testProduct(Product.V2_FCSTINTRADAY3)
+    }
+
+    @Test
     fun testALot() {
 
         enumValues<Product>().filter { it != Product.VT1_CONTENT_MODE && it != Product.V3_ALERTS_DETAIL }.forEach { testProduct(it) }
@@ -177,7 +178,7 @@ class V3RepoTest {
                     v3Repo.getV3Agg(
                             setOf(prod),
                             latLng = v3Repo.latLng,
-                            setMode = V3Repo.Mode.NETWORK_ONLY)
+                            mode = V3Repo.Mode.NETWORK_ONLY)
 
             observable
 //                .observeOn(AndroidSchedulers.mainThread())s
@@ -196,7 +197,7 @@ class V3RepoTest {
             val observable = v3Repo.getV3Agg(
                     products,
                     latLng = it,
-                    setMode = V3Repo.Mode.CACHE_FIRST,
+                    mode = V3Repo.Mode.CACHE_FIRST,
                     maxAgeResponseCache = 30)
 
 
@@ -247,8 +248,4 @@ class V3RepoTest {
     }
 
 
-    @Test
-    fun fromFile() {
-
-    }
 }
