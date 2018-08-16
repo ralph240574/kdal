@@ -42,6 +42,8 @@ data class V3Agg(
 
         val v2idxMosquitoDaily3: V2idxMosquitoDaily?,
 
+        val v2idxMosquitoDaily7: V2idxMosquitoDaily?,
+
         val v3alertsDetail: V3alertsDetail?,
 
         val v3alertsHeadlines: V3alertsHeadlines?,

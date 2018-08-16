@@ -1,7 +1,6 @@
 package com.weather.android.kdal
 
 import com.weather.android.kdal.model.V3Agg
-import com.weather.android.kdal.model.V3WxGlobalAirQuality
 import com.weather.android.kdal.util.formatHHmm
 import com.weather.android.kdal.util.getTimeOffset
 import com.weather.android.kdal.util.toDate
@@ -126,13 +125,13 @@ class V3RepoTest {
 //        testProduct(Product.V3_WX_OBSERVATIONS_CURRENT)
 //        testProduct(Product.VT1_CURRENT_TIDES)
 //        testProduct(Product.V3_WX_CONDITIONS_HISTORICAL_DAILYSUMMARY_30_DAY)
-//        testProduct(Product.V3_WX_FORECAST_DAILY_15_DAY)
+        testProduct(Product.V2_IDX_MOSQUITO_DAILY_7)
 
 //        testProduct(Product.V3_WX_CONDITIONS_HISTORICAL_HOURLY_1_DAY)
 
 
-        v3Repo.v3GlobalAirScaleParameterValue = V3WxGlobalAirQuality.SCALE_PARAMETER_VALUE.EPA
-        testProduct(Product.V3_WX_GLOBAL_AIR_QUALITY)
+//        v3Repo.v3GlobalAirScaleParameterValue = V3WxGlobalAirQuality.SCALE_PARAMETER_VALUE.EPA
+//        testProduct(Product.V3_WX_GLOBAL_AIR_QUALITY)
 
 //        v3Repo.v3GlobalAirScaleParameterValue = V3WxGlobalAirQuality.SCALE_PARAMETER_VALUE.HJ6332012
 //        testProduct(Product.V3_WX_GLOBAL_AIR_QUALITY)

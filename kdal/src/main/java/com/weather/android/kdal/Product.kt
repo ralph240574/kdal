@@ -20,6 +20,7 @@ enum class Product(val productName: String, val queryParameter: Set<QueryParamet
     V2_IDX_POLLEN_DAYPART_15("v2idxPollenDaypart15", setOf(LANGUAGE)),
     V2_IDX_RUN_DAY_PART15("v2idxRunDaypart15", setOf(LANGUAGE)),
     V2_IDX_MOSQUITO_DAILY_3("v2idxMosquitoDaily3", setOf(LANGUAGE)),
+    V2_IDX_MOSQUITO_DAILY_7("v2idxMosquitoDaily7", setOf(LANGUAGE)),
     V3_ALERTS_DETAIL("v3alertsDetail", setOf(LANGUAGE, ALERT_ID)), // will only work with a product that uses geocode
     V3_ALERTS_HEADLINES("v3alertsHeadlines", setOf(LANGUAGE)),
     V3_WX_CONDITIONS_HISTORICAL_DAILYSUMMARY_30_DAY("v3-wx-conditions-historical-dailysummary-30day"),
