@@ -3,6 +3,11 @@ package com.weather.android.kdal.model
 import com.squareup.moshi.JsonClass
 import com.weather.android.kdal.util.validateNoNullsInList
 
+/**
+ *
+ * @see <a href="https://docs.google.com/document/d/12CymFpLVGBDGR2rSBZ7auKun57uxMdX17PYj2jPc7HQ/edit">Lifestyle Indices - Breathing/Asthma Index - v2</a>
+ *
+ */
 @JsonClass(generateAdapter = true)
 data class V2idxBreathingDaypart(
         val metadata: Metadata,

@@ -2,6 +2,12 @@ package com.weather.android.kdal.model
 
 import com.squareup.moshi.JsonClass
 
+
+/**
+ *
+ * @see <a href="https://docs.google.com/document/d/1B7vVQZDbk-wrQNpBzTIGlYYYaWZtagZ6Nj1Gd70c2mw/edit">Lifestyle Indices - Mosquito Activity - v2</a>
+ *
+ */
 @JsonClass(generateAdapter = true)
 data class V2idxMosquitoDaily(
         val metadata: Metadata,
@@ -27,6 +33,7 @@ data class V2idxMosquitoDaily(
             val mosquitoCategory: List<String?>
     )
 
+    @JsonClass(generateAdapter = true)
     data class Metadata(
             val language: String, // en-US
             val transactionId: String, // 1532972642615:-362580358

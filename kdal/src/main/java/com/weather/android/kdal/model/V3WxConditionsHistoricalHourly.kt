@@ -2,6 +2,13 @@ package com.weather.android.kdal.model
 
 import com.weather.android.kdal.util.validateNoNullsInList
 
+
+/**
+ *
+ * @see <a href="https://docs.google.com/document/d/1TlF0nNIWN1fP760hsyOZjr8JjARKzyE7hYaMkaWdAT0/edit">Historical Conditions - Hourly - v3.0</a>
+ *
+ */
+
 //adapter generation does not seem to work for List with nullables elements,
 //but moshi can handle this alone, but nullability is not enforced
 //@JsonClass(generateAdapter = true)

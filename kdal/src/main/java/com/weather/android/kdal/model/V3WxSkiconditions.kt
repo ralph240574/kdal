@@ -2,6 +2,12 @@ package com.weather.android.kdal.model
 
 import com.squareup.moshi.JsonClass
 
+
+/**
+ *
+ * @see <a href="https://docs.google.com/document/d/146TyvAUwVHdSooQXLrnKHymjTkMKB6elUAXUJmATbSA/edit">Snow and Ski Conditions - v3</a>
+ *
+ */
 @JsonClass(generateAdapter = true)
 data class V3WxSkiconditions(
         val adminDistrict: String?, // Chile

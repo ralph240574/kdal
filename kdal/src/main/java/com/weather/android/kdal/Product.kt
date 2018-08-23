@@ -19,6 +19,7 @@ enum class Product(val productName: String, val queryParameter: Set<QueryParamet
     V2_IDX_DRY_SKIN_DAYPART15("v2idxDrySkinDaypart15", setOf(LANGUAGE)),
     V2_IDX_POLLEN_DAYPART_15("v2idxPollenDaypart15", setOf(LANGUAGE)),
     V2_IDX_RUN_DAY_PART15("v2idxRunDaypart15", setOf(LANGUAGE)),
+    V2_IDX_RUN_HOURLY24("v2idxRunHourly24", setOf(LANGUAGE)),
     V2_IDX_MOSQUITO_DAILY_3("v2idxMosquitoDaily3", setOf(LANGUAGE)),
     V2_IDX_MOSQUITO_DAILY_7("v2idxMosquitoDaily7", setOf(LANGUAGE)),
     V3_ALERTS_DETAIL("v3alertsDetail", setOf(LANGUAGE, ALERT_ID)), // will only work with a product that uses geocode
@@ -36,7 +37,7 @@ enum class Product(val productName: String, val queryParameter: Set<QueryParamet
     V3_LOCATION_POINT("v3-location-point", setOf(LANGUAGE));
 
 
-//    v3-location-search, this will not work as a standalone in the agg call
+//    V2idxRunHourly-location-search, this will not work as a standalone in the agg call
 
 
     override fun toString(): String = productName

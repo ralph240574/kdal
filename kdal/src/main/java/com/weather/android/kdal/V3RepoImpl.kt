@@ -1,6 +1,5 @@
 package com.weather.android.kdal
 
-import android.util.Log
 import com.squareup.moshi.Moshi
 import com.weather.android.kdal.Product.Companion.asString
 import com.weather.android.kdal.V3Repo.Mode.*
@@ -15,7 +14,9 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import okhttp3.Cache
 import okhttp3.OkHttpClient
+import retrofit2.HttpException
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.Result
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.File
@@ -117,8 +118,7 @@ class V3RepoImpl constructor(
                           units: Units,
                           locale: Locale,
                           globalAirScaleParameter: SCALE_PARAMETER_VALUE
-    )
-            : Observable<V3Agg> {
+    ): Observable<V3Agg> {
 
         val fromCache = getV3AggFromCache(products, latLng = latLng, maxAgeResponseInSec = maxAgeResponseCache)
 
@@ -136,7 +136,7 @@ class V3RepoImpl constructor(
 
 
     /**
-     * Returns Single with data from network
+     * Returns Single with data from network, not using
      */
     private fun getV3AggFromNetwork(
             products: Set<Product>,
@@ -152,12 +152,9 @@ class V3RepoImpl constructor(
                 getScaleParameter(queryParameters),
                 latLng.toQueryParameter(),
                 getUnitsParameter(queryParameters))
-                .doOnSuccess({
-                    it.validate()
-                })
-                .doOnError { t: Throwable ->
-                    Log.e(TAG, t.toString(), t)
-                }
+                .doOnSuccess {
+                    it.response()?.body()?.validate()
+                }.map(toV3Agg)
     }
 
 
@@ -173,15 +170,40 @@ class V3RepoImpl constructor(
 
         val dynamicHeaderMap = mapOf(Pair("Cache-Control", "max-age=${maxAgeResponseInSec}, only-if-cached"))
 
-        return repo.getV3AggFromCache(dynamicHeaderMap,
+
+//        return repo.getV3AggFromCache(dynamicHeaderMap,
+//                asString(products),
+//                getLanguageParameter(queryParameters),
+//                getPollenDate(queryParameters),
+//                getScaleParameter(queryParameters),
+//                latLng.toQueryParameter(),
+//                getUnitsParameter(queryParameters))
+//
+        val single: Single<Result<V3Agg>> = repo.getV3AggFromCache(dynamicHeaderMap,
                 asString(products),
                 getLanguageParameter(queryParameters),
                 getPollenDate(queryParameters),
                 getScaleParameter(queryParameters),
                 latLng.toQueryParameter(),
                 getUnitsParameter(queryParameters))
+
+        return single.map(toV3Agg)
+
     }
 
+
+    val toV3Agg = { it: Result<V3Agg> ->
+        if (it.isError()) {
+            throw Throwable(it.error())
+        } else {
+            val resp = it.response()!! //this will not be null if there is no error
+            if (it.response()?.isSuccessful == false) {
+                throw HttpException(resp)
+            }
+            val time = it.response()?.headers()?.get("Date") ?: ""
+            it.response()!!.body()?.copy(requestTime = time)
+        }
+    }
 
     /**
      * This will calculate the required set of query parameters based on the selected Products

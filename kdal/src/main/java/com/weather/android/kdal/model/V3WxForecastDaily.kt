@@ -2,6 +2,13 @@ package com.weather.android.kdal.model
 
 import com.weather.android.kdal.util.validateNoNullsInList
 
+
+/**
+ *
+ * @see <a href="https://docs.google.com/document/d/1RY44O8ujbIA_tjlC4vYKHKzwSwEmNxuGw5sEJ9dYjG4/edit">Daily Forecast - (3, 5, 7, 10, 15 Day) - v3.0</a>
+ *
+ */
+
 //adapter generation does not seem to work for List with nullables elements,
 //but moshi can handle this alone
 //@JsonClass(generateAdapter = true)
@@ -58,6 +65,7 @@ data class V3WxForecastDaily(
             val wxPhraseShort: List<String?>
     )
 
+
     fun validate() {
         dayOfWeek.validateNoNullsInList()
         expirationTimeUtc.validateNoNullsInList()
@@ -69,5 +77,6 @@ data class V3WxForecastDaily(
         temperatureMin.validateNoNullsInList()
         validTimeLocal.validateNoNullsInList()
         validTimeUtc.validateNoNullsInList()
+        daypart.validateNoNullsInList()
     }
 }

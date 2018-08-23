@@ -1,0 +1,85 @@
+{
+
+	  "id": "29.19,-96.27",
+
+	"v3-wx-globalAirQuality":{
+		"globalairquality": {
+			"latitude": 33.91,
+			"longitude": -84.34,
+			"source": "Powered by Copernicus Atmosphere Monitoring Service",
+			"disclaimer": "Neither the European Commission nor ECMWF is responsible for any use of this information",
+			"airQualityIndex": 36,
+			"airQualityCategory": "Good",
+			"airQualityCategoryIndex": 1,
+			"airQualityCategoryIndexColor": "00E838",
+			"primaryPollutant": "PM2.5",
+			"pollutants": {
+				"NO2": {
+					"name": "NO2",
+					"phrase": "Nitrogen Dioxide",
+					"amount": 2.81,
+					"unit": "μg/m3",
+					"category": "Good",
+					"categoryIndex": 1,
+					"index": 1
+				},
+				"O3": {
+					"name": "O3",
+					"phrase": "Ozone",
+					"amount": 72.90,
+					"unit": "μg/m3",
+					"category": "Good",
+					"categoryIndex": 1,
+					"index": 27
+				},
+				"SO2": {
+					"name": "SO2",
+					"phrase": "Sulfur Dioxide",
+					"amount": 1.79,
+					"unit": "μg/m3",
+					"category": "Good",
+					"categoryIndex": 1,
+					"index": 1
+				},
+				"PM2.5": {
+					"name": "PM2.5",
+					"phrase": "Particulate matter less than 2.5 microns",
+					"amount": 4.25,
+					"unit": "μg/m3",
+					"category": "Good",
+					"categoryIndex": 1,
+					"index": 36
+				},
+				"PM10": {
+					"name": "PM10",
+					"phrase": "Particulate matter less than 10 microns",
+					"amount": 5.94,
+					"unit": "μg/m3",
+					"category": "Good",
+					"categoryIndex": 1,
+					"index": 11
+				},
+				"CO": {
+					"name": "CO",
+					"phrase": "Carbon Monoxide",
+					"amount": 116.03,
+					"unit": "μg/m3",
+					"category": "Good",
+					"categoryIndex": 1,
+					"index": 1
+				}
+			},
+			"messages": {
+				"Sensitive Group": {
+					"title": "Sensitive Groups",
+					"text": "Air quality is considered satisfactory, and air pollution poses little or no risk."
+				},
+				"General": {
+					"title": "General",
+					"text": "Air quality is considered satisfactory, and air pollution poses little or no risk."
+				}
+			},
+			"expireTimeGmt": 1534878000
+		}
+	}
+}

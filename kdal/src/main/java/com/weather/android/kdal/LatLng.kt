@@ -3,7 +3,25 @@ package com.weather.android.kdal
 import java.text.NumberFormat
 import java.util.*
 
-class LatLng(val latitude: Double, val longitude: Double) {
+data class LatLng(val latitude: Double, val longitude: Double) {
+
+
+    companion object {
+
+        private val MAX_LONGITUDE = 180.0
+
+        private val MAX_LATITUDE = 90.0
+
+        private fun checkRanges(latitude: Double, longitude: Double) {
+            if (longitude > MAX_LONGITUDE || longitude < -MAX_LONGITUDE) {
+                throw IllegalArgumentException("Longitude is out of range")
+            }
+            if (latitude > MAX_LATITUDE || latitude < -MAX_LATITUDE) {
+                throw IllegalArgumentException("latitude is out of range ")
+            }
+        }
+
+    }
 
     var fractionDigits: Int = 2
 
@@ -27,21 +45,4 @@ class LatLng(val latitude: Double, val longitude: Double) {
         return toQueryParameter()
     }
 
-    companion object {
-
-        private val MAX_LONGITUDE = 180.0
-
-        private val MAX_LATITUDE = 90.0
-
-
-        private fun checkRanges(latitude: Double, longitude: Double) {
-            if (longitude > MAX_LONGITUDE || longitude < -MAX_LONGITUDE) {
-                throw IllegalArgumentException("Longitude is out of range")
-            }
-            if (latitude > MAX_LATITUDE || latitude < -MAX_LATITUDE) {
-                throw IllegalArgumentException("latitude is out of range ")
-            }
-        }
-
-    }
 }

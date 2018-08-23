@@ -3,8 +3,13 @@ package com.weather.android.kdal.model
 import com.squareup.moshi.JsonClass
 import com.weather.android.kdal.util.validateNoNullsInList
 
+/**
+ *
+ * @see <a href="https://docs.google.com/document/d/1hQXPbnd8hhSbGBIwRSj0TLVRadhjK8lVmEvhWEaM7Vw/edit">Lifestyle Indices - Pollen Index - v2</a>
+ *
+ */
 @JsonClass(generateAdapter = true)
-data class V2idxPollenDaypart15(
+data class V2idxPollenDaypart(
         val metadata: Metadata,
         val pollenForecast12hour: PollenForecast12hour
 ) {

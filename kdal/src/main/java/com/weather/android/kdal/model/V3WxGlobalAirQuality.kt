@@ -3,10 +3,17 @@ package com.weather.android.kdal.model
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
+
+/**
+ *
+ * @see <a href="https://docs.google.com/document/d/1rcYHmIaGKtiINuEPJXGMWU5OEntPf2i0U8BBO8clmtQ/edit">Air Quality - Global - v3.0</a>
+ *
+ */
 @JsonClass(generateAdapter = true)
 data class V3WxGlobalAirQuality(
         val globalairquality: Globalairquality
 ) {
+    @JsonClass(generateAdapter = true)
     data class Globalairquality(
             val latitude: Double, // 29.19
             val longitude: Double, // -96.27
@@ -21,6 +28,7 @@ data class V3WxGlobalAirQuality(
             val messages: Messages,
             val expireTimeGmt: Long // 1531162800
     ) {
+        @JsonClass(generateAdapter = true)
         data class Messages(
                 @Json(name = "Sensitive Group")
                 val sensitiveGroup: SensitiveGroup,
@@ -38,6 +46,7 @@ data class V3WxGlobalAirQuality(
             )
         }
 
+        @JsonClass(generateAdapter = true)
         data class Pollutants(
                 @Json(name = "NO2")
                 val nO2: NO2,

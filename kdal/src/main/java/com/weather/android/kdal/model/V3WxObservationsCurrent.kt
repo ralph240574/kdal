@@ -2,6 +2,12 @@ package com.weather.android.kdal.model
 
 import com.squareup.moshi.JsonClass
 
+
+/**
+ *
+ * @see <a href="https://docs.google.com/document/d/1nQImKyn0tXze-wDYE3qSWV8aTnjyGC8bhG-pbUVQSeA/edit">Currents On Demand - v3.0</a>
+ *
+ */
 @JsonClass(generateAdapter = true)
 data class V3WxObservationsCurrent(
         val cloudCeiling: Int?, // null

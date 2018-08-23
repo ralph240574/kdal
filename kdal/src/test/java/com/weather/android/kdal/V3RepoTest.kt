@@ -6,6 +6,7 @@ import com.weather.android.kdal.util.getTimeOffset
 import com.weather.android.kdal.util.toDate
 import io.reactivex.rxkotlin.subscribeBy
 import org.junit.Assert
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import java.io.File
@@ -15,8 +16,6 @@ import kotlin.reflect.full.memberProperties
 
 class V3RepoTest {
 
-//    val apiKey = "1941878e0eef4b4c81878e0eeffb4cc2"
-
     val apiKey = "8de2d8b3a93542c9a2d8b3a935a2c909"
 
 
@@ -24,30 +23,24 @@ class V3RepoTest {
 
     val products = setOf(
 
-            Product.VT1_ALERTS,
-            Product.VT1_CONTENT_MODE,
-            Product.VT1_CURRENT_TIDES,
-            Product.VT1_LIGHTNING,
-            Product.VT1_NOWCAST,
-            Product.VT1_POLLENOBS,
-            Product.VT1_PRECIPITATION,
-            Product.VT1_WWIR,
-            Product.V2_FCSTINTRADAY3,
-            Product.V2_IDX_BREATHING_DAYPART15,
-            Product.V2_IDX_POLLEN_DAYPART_15,
-            Product.V2_IDX_RUN_DAY_PART15,
-            Product.V3_ALERTS_HEADLINES,
+
+            Product.V3_LOCATION_POINT, //not needed right now, but may be very handy
             Product.V3_WX_CONDITIONS_HISTORICAL_DAILYSUMMARY_30_DAY,
             Product.V3_WX_CONDITIONS_HISTORICAL_HOURLY_1_DAY,
-            Product.V3_WX_INDICES_FLUX_DAILY_15_DAY,
-            Product.V3_WX_FORECAST_DAILY_15_DAY,
-            Product.V3_WX_FORECAST_HOURLY_2_DAY,
-            Product.V3_WX_FORECAST_HOURLY_10_DAY,
-            Product.V3_WX_GLOBAL_AIR_QUALITY,
-            Product.V3_WX_INDICES_FLUX_DAILY_15_DAY,
-            Product.V3_WX_INDICES_POLLEN_HISTORICAL_1DAY,
+            Product.V3_ALERTS_HEADLINES,
             Product.V3_WX_OBSERVATIONS_CURRENT,
-            Product.V2_IDX_MOSQUITO_DAILY_3
+            Product.V3_WX_FORECAST_HOURLY_2_DAY,
+            Product.V3_WX_FORECAST_DAILY_15_DAY,
+            Product.V3_WX_GLOBAL_AIR_QUALITY,
+            Product.VT1_WWIR,
+            Product.VT1_CONTENT_MODE,
+            Product.VT1_LIGHTNING,
+            Product.VT1_PRECIPITATION,
+            Product.VT1_CURRENT_TIDES,
+            Product.V2_FCSTINTRADAY3,
+            Product.V2_IDX_DRY_SKIN_DAYPART15,
+            Product.V2_IDX_RUN_HOURLY24,
+            Product.V2_IDX_MOSQUITO_DAILY_7
 
     )
 
@@ -67,6 +60,11 @@ class V3RepoTest {
     val cairo = LatLng(30.0594698, 31.18)
 
     val latlongs = listOf(atl)
+
+    val indianCities = File("src/test/data/IndianCities.tsv").readText().split("\n").map { it.toCity().toLatLong() }
+
+    val USZipcodes = File("src/test/data/US_Zipcodes.csv").readText().split("\n").map { it.toZip().toLatLong() }
+
 
 //    listOf(atl, nyc, dehli, jakarta, mumbai, la, berlin, paris, london, tokyo, moscow, rome, cairo)
 
@@ -108,11 +106,6 @@ class V3RepoTest {
 
 
     @Test
-    fun testIntraDay() {
-        testProduct(Product.V2_FCSTINTRADAY3)
-    }
-
-    @Test
     fun testALot() {
 
         enumValues<Product>().filter { it != Product.VT1_CONTENT_MODE && it != Product.V3_ALERTS_DETAIL }.forEach { testProduct(it) }
@@ -122,16 +115,22 @@ class V3RepoTest {
 
     @Test
     fun test() {
-//        testProduct(Product.V3_WX_OBSERVATIONS_CURRENT)
+        testProduct(Product.V3_WX_OBSERVATIONS_CURRENT, mode = V3Repo.Mode.NETWORK_ONLY)
+//        testProduct(Product.V2_IDX_RUN_DAY_PART15, mode = V3Repo.Mode.NETWORK_ONLY)
+//        testProduct(Product.V2_IDX_RUN_HOURLY24, mode = V3Repo.Mode.NETWORK_ONLY)
+
+
 //        testProduct(Product.VT1_CURRENT_TIDES)
 //        testProduct(Product.V3_WX_CONDITIONS_HISTORICAL_DAILYSUMMARY_30_DAY)
-        testProduct(Product.V2_IDX_MOSQUITO_DAILY_7)
+//        testProduct(Product.V2_IDX_MOSQUITO_DAILY_7)
+
+//        testProduct(Product.V2_IDX_MOSQUITO_DAILY_7, mode = V3Repo.Mode.OFFLINE)
 
 //        testProduct(Product.V3_WX_CONDITIONS_HISTORICAL_HOURLY_1_DAY)
 
 
 //        v3Repo.v3GlobalAirScaleParameterValue = V3WxGlobalAirQuality.SCALE_PARAMETER_VALUE.EPA
-//        testProduct(Product.V3_WX_GLOBAL_AIR_QUALITY)
+        testProduct(Product.V3_WX_GLOBAL_AIR_QUALITY)
 
 //        v3Repo.v3GlobalAirScaleParameterValue = V3WxGlobalAirQuality.SCALE_PARAMETER_VALUE.HJ6332012
 //        testProduct(Product.V3_WX_GLOBAL_AIR_QUALITY)
@@ -149,7 +148,7 @@ class V3RepoTest {
 //        v3Repo.v3GlobalAirScaleParameterValue = V3WxGlobalAirQuality.SCALE_PARAMETER_VALUE.CAQI
 //        testProduct(Product.V3_WX_GLOBAL_AIR_QUALITY)
 
-//        val v3WxObsJson = """ {"id": "19.09,72.88",  "v3-wx-observations-current":
+//        val v3WxObsJson = """ {"id": "19.09,72.88",  "V2idxRunHourly-wx-observations-current":
 //
 //            {"cloudCeiling":9000,"cloudCoverPhrase":"Cloudy","dayOfWeek":"Tuesday","dayOrNight":"N","expirationTimeUtc":1533047411,"iconCode":27,"obsQualifierCode":null,"obsQualifierSeverity":null,"precip24Hour":0.16,"pressureAltimeter":29.68,"pressureChange":0.03,"pressureMeanSeaLevel":1005.1,"pressureTendencyCode":1,"pressureTendencyTrend":"Rising","relativeHumidity":83,"snow24Hour":0.0,"sunriseTimeLocal":"2018-07-31T06:14:43+0530","sunriseTimeUtc":1532997883,"sunsetTimeLocal":"2018-07-31T19:14:59+0530","sunsetTimeUtc":1533044699,"temperature":82,"temperatureChange24Hour":0,"temperatureDewPoint":77,"temperatureFeelsLike":91,"temperatureHeatIndex":91,"temperatureMax24Hour":86,"temperatureMaxSince7Am":86,"temperatureMin24Hour":82,"temperatureWindChill":82,"uvDescription":"Low","uvIndex":0,"validTimeLocal":"2018-07-31T19:50:11+0530","validTimeUtc":1533046811,"visibility":3.000,"windDirection":230,"windDirectionCardinal":"SW","windGust":24,"windSpeed":13,"wxPhraseLong":"Showers in the Vicinity","wxPhraseMedium":"Showers in Vicinity","wxPhraseShort":"Showers Near"}
 //
@@ -168,16 +167,17 @@ class V3RepoTest {
     }
 
 
-    fun testProduct(prod: Product) {
+    fun testProduct(prod: Product, mode: V3Repo.Mode = V3Repo.Mode.NETWORK_ONLY, maxAge: Int = 60) {
 
-        latlongs.forEach({ it ->
+
+        indianCities.forEach({ it ->
             v3Repo.latLng = it
 
             val observable =
                     v3Repo.getV3Agg(
                             setOf(prod),
                             latLng = v3Repo.latLng,
-                            mode = V3Repo.Mode.NETWORK_ONLY)
+                            mode = mode, maxAgeResponseCache = maxAge)
 
             observable
 //                .observeOn(AndroidSchedulers.mainThread())s
@@ -191,24 +191,48 @@ class V3RepoTest {
     @Test
     fun getV3Agg() {
 
+        var counter = 0
 
-        latlongs.forEach {
+        USZipcodes.filterIndexed({ index, value -> index % 100 == 0 }).forEach {
             val observable = v3Repo.getV3Agg(
                     products,
                     latLng = it,
-                    mode = V3Repo.Mode.CACHE_FIRST,
+                    mode = V3Repo.Mode.NETWORK_ONLY,
                     maxAgeResponseCache = 30)
 
 
             observable.subscribeBy(
                     onNext = {
-                        println("+++++++ ${it}")
+                        println("${counter++}:  +++++++ ${it}")
+                        assertNotNull(it)
                     },
                     onError = { println("XXXXXXXXXXXXXXX$it") }
             )
         }
     }
 
+
+
+
+    @Test
+    fun testfailure() {
+        val observable = v3Repo.getV3Agg(
+                products,
+                latLng = atl,
+                mode = V3Repo.Mode.NETWORK_ONLY,
+                maxAgeResponseCache = 30)
+
+
+        observable.subscribeBy(
+                onNext = {
+                    println("+++++++ ${it}")
+                    assertNotNull(it)
+                },
+                onError = { println("XXXXXXXXXXXXXXX$it") }
+        )
+
+
+    }
 
     fun checkV3Agg(prod: Product, v3Agg: V3Agg?) {
         Assert.assertNotNull(v3Agg)
@@ -218,8 +242,9 @@ class V3RepoTest {
         }
 
         if (v3Agg != null) {
-            println(field.get(v3Agg))
-            print(v3Agg)
+            val v = field.get(v3Agg)
+            assertNotNull(v)
+            println(v)
         }
     }
 
@@ -234,17 +259,45 @@ class V3RepoTest {
 
 
     @Test
-    fun something() {
+    fun cities() {
+        val s = File("src/test/data/IndianCities.tsv").readText()
 
-//        testProduct(Product.V2_FCSTINTRADAY3)
-//        testProduct(Product.V2_IDX_MOSQUITO_DAILY_3)
-//        testProduct(Product.V2_GLOBALAIR)
-//        testProduct(Product.V2_IDX_DRIVE_CURRENT)
-        testProduct(Product.V2_IDX_BREATHING_DAYPART15)
-        testProduct(Product.V3_WX_CONDITIONS_HISTORICAL_DAILYSUMMARY_30_DAY)
-//        testProduct(Product.V2_GLOBALAIR)
+        val cities = s.split("\n").map { it.toCity().toLatLong() }
+
+        cities.forEach { println(it) }
 
     }
 
+    @Test
+    fun zipCodes() {
+        val s = File("src/test/data/US_Zipcodes.csv").readText()
+
+        val zipCodes = s.split("\n").map { it.toZip().toLatLong() }
+
+        zipCodes.forEach { println(it) }
+    }
+
+
+    data class City(val name: String, val lat: Double, val long: Double)
+
+    data class Zip(val zip: String, val lat: Double, val long: Double)
+
+    fun String.toZip(): Zip {
+        val s = this.split(",")
+        return Zip(s[0], s[1].toDouble(), s[2].toDouble())
+    }
+
+    fun Zip.toLatLong(): LatLng {
+        return LatLng(this.lat, this.long)
+    }
+
+    fun String.toCity(): City {
+        val s = this.split("\t")
+        return City(s[0], s[1].toDouble(), s[2].toDouble())
+    }
+
+    fun City.toLatLong(): LatLng {
+        return LatLng(this.lat, this.long)
+    }
 
 }

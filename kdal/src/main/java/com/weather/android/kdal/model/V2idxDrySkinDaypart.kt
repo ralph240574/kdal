@@ -3,8 +3,13 @@ package com.weather.android.kdal.model
 import com.squareup.moshi.JsonClass
 
 
+/**
+ *
+ * @see <a href="https://docs.google.com/document/d/1_Eag3PQF1HZSPOu6EpONoZcz6Ld7b8AaQlmrfzMOMfA/edit">Lifestyle Indices - Dry Skin Index - v2</a>
+ *
+ */
 @JsonClass(generateAdapter = true)
-data class V2idxDrySkinDaypart15(
+data class V2idxDrySkinDaypart(
         val metadata: Metadata?,
         val drySkinIndex12hour: DrySkinIndex12hour?
 ) {
@@ -18,6 +23,7 @@ data class V2idxDrySkinDaypart15(
             val drySkinCategory: List<String?>?
     )
 
+    @JsonClass(generateAdapter = true)
     data class Metadata(
             val language: String?, // en-US
             val transactionId: String?, // 1533740363052:1594264002

@@ -3,8 +3,14 @@ package com.weather.android.kdal.model
 import com.squareup.moshi.JsonClass
 import com.weather.android.kdal.util.validateNoNullsInList
 
+
+/**
+ *
+ * @see <a href="https://docs.google.com/document/d/13lCSBBUgOMXph08d1t54yKTDqV1q9SNBxNCg-FaupGc/edit">Lifestyle Indices - Running Weather Index - v2</a>
+ *
+ */
 @JsonClass(generateAdapter = true)
-data class V2idxRunDaypart15(
+data class V2idxRunDaypart(
         val metadata: Metadata,
         val runWeatherIndex12hour: RunWeatherIndex12hour
 ) {

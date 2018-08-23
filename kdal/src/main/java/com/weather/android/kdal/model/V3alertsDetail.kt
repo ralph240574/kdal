@@ -3,6 +3,12 @@ package com.weather.android.kdal.model
 import com.squareup.moshi.JsonClass
 import com.weather.android.kdal.util.validateNoNullsInList
 
+
+/**
+ *
+ * @see <a href="https://docs.google.com/document/d/16cYge1VXtLz68MnZKqsYXnPSOJroN8LdfufK3_ZcWo8/edit">Weather Alerts Detail - V2idxRunHourly.0</a>
+ *
+ */
 @JsonClass(generateAdapter = true)
 data class V3alertsDetail(
         val alertDetail: AlertDetail

@@ -2,7 +2,6 @@ package com.weather.android.kdal
 
 import com.squareup.moshi.Moshi
 import com.weather.android.kdal.model.V3Agg
-import com.weather.android.kdal.model.Vt1currentTides
 import org.junit.Assert.assertNotNull
 import org.junit.Test
 import java.io.File
@@ -17,7 +16,7 @@ class ParsingTest {
     @Test
     fun testParseV3Obs() {
 
-        val v3wxObservationsCurrent = File("src/test/data/v3-wx-observations-current.json").readText(Charsets.UTF_8)
+        val v3wxObservationsCurrent = File("src/test/data/V2idxRunHourly-wx-observations-current.json").readText(Charsets.UTF_8)
 
         val start = System.currentTimeMillis()
         val v3Agg = adapter.fromJson(v3wxObservationsCurrent)
@@ -75,7 +74,7 @@ class ParsingTest {
 
         val adapter = Moshi.Builder().build().adapter<V3Agg>(V3Agg::class.java)
 
-        val histJson = File("src/test/data/v3-wx-conditions-historical-dailysummary-30day.json").readText(Charsets.UTF_8)
+        val histJson = File("src/test/data/V2idxRunHourly-wx-conditions-historical-dailysummary-30day.json").readText(Charsets.UTF_8)
         val start = System.currentTimeMillis()
         val v3Agg = adapter.fromJson(histJson)
         println("${System.currentTimeMillis() - start} ms")
@@ -87,31 +86,51 @@ class ParsingTest {
     }
 
     @Test
-    fun testingStuff() {
+    fun testV3GlobalAirQuality() {
+        val adapter = Moshi.Builder().build().adapter<V3Agg>(V3Agg::class.java)
+        val json = File("src/test/data/V2idxRunHourly-wx-globalAirQuality.json").readText()
 
-        val type = listOf("a", "b")
+        val v3Agg = adapter.fromJson(json)
 
-        val time = listOf("1", "2")
+        val v3WxGlobalAirQuality = v3Agg?.v3WxGlobalAirQuality
 
-        val height = listOf(.5, .0)
-
-        val tides = Vt1currentTides(type, time, height);
-
-
-//        tides.height.forEach { println(it) }
-
-//        println(tides.height.javaClass.name)
-
-
+        assertNotNull(v3WxGlobalAirQuality)
+        println(v3WxGlobalAirQuality)
     }
-
 
     @Test
-    fun testUtil() {
+    fun testParseV3Agg() {
+        val adapter = Moshi.Builder().build().adapter<V3Agg>(V3Agg::class.java)
+        val v3AggJson = File("src/test/data/v3Agg2.json").readText()
 
-        val v3Agg = V3RepoImpl.getV3AggFromFile("src/test/data/v3Agg.json")
+        val v3Agg = adapter.fromJson(v3AggJson)
+
+        val v3WxGlobalAirQuality = v3Agg?.v3WxGlobalAirQuality
+
+        assertNotNull(v3WxGlobalAirQuality)
+        println(v3Agg?.v3WxGlobalAirQuality)
 
 
-        println(v3Agg)
+
+        assertNotNull(v3Agg?.vt1wwir)
+        println(v3Agg?.vt1wwir)
+
     }
+
+    @Test
+    fun testParsev3WxIndicesFluxDaily15day() {
+        val adapter = Moshi.Builder().build().adapter<V3Agg>(V3Agg::class.java)
+        val v3AggJson = File("src/test/data/v3WxIndicesFluxDaily15day.json").readText()
+
+        val v3Agg = adapter.fromJson(v3AggJson)
+
+        val v3WxGlobalAirQuality = v3Agg?.v3WxIndicesFluxDaily15day
+
+        assertNotNull(v3WxGlobalAirQuality)
+        v3WxGlobalAirQuality?.validate()
+        println(v3Agg?.v3WxIndicesFluxDaily15day)
+
+    }
+
+
 }

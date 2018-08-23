@@ -2,10 +2,17 @@ package com.weather.android.kdal.model
 
 import com.squareup.moshi.JsonClass
 
+
+/**
+ *
+ * @see <a href="https://docs.google.com/document/d/1xSpijI9MgWWfHaFX4wo_tB0GjtNeHZqGyp3XVOaAPl4/edit">Location Service - Search and Point - v3.0</a>
+ *
+ */
 @JsonClass(generateAdapter = true)
 data class V3LocationPoint(
         val location: Location
 ) {
+    @JsonClass(generateAdapter = true)
     data class Location(
             val latitude: Double, // 29.22
             val longitude: Double, // -96.29
@@ -27,6 +34,7 @@ data class V3LocationPoint(
             val countyId: String?, // null
             val zoneId: String? // null
     ) {
+        @JsonClass(generateAdapter = true)
         data class Locale(
                 val locale1: String?, // null
                 val locale2: String?, // El Campo

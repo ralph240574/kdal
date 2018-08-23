@@ -5,12 +5,12 @@ import com.squareup.moshi.JsonClass
 import com.squareup.moshi.Moshi
 
 
-//TODO datestamp of retrieval ??
-
 @JsonClass(generateAdapter = true)
 data class V3Agg(
 
         val id: String, // 33.92,-84.34
+
+        val requestTime: String = "",
 
         val vt1alerts: Vt1alerts?,
 
@@ -28,7 +28,7 @@ data class V3Agg(
 
         val vt1wwir: Vt1wwir?,
 
-        val v2idxDrySkinDaypart15: V2idxDrySkinDaypart15?,
+        val v2idxDrySkinDaypart15: V2idxDrySkinDaypart?,
 
         val v2fcstintraday3: V2fcstintraday3?,
 
@@ -36,9 +36,11 @@ data class V3Agg(
 
         val v2idxDriveCurrent: V2idxDriveCurrent?,
 
-        val v2idxRunDaypart15: V2idxRunDaypart15?,
+        val v2idxRunDaypart15: V2idxRunDaypart?,
 
-        val v2idxPollenDaypart15: V2idxPollenDaypart15?,
+        val v2idxRunHourly24: V2idxRunHourly?,
+
+        val v2idxPollenDaypart15: V2idxPollenDaypart?,
 
         val v2idxMosquitoDaily3: V2idxMosquitoDaily?,
 
@@ -110,15 +112,6 @@ data class V3Agg(
         vt1precipitation?.validate()
         vt1lightning?.validate()
 
-    }
-
-
-    //TOTO merge function
-    fun merge(other: V3Agg): V3Agg {
-
-        IllegalAccessException("not impemented yex")
-
-        return other
     }
 
 

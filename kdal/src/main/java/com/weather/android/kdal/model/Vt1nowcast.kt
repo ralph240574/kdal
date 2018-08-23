@@ -2,6 +2,12 @@ package com.weather.android.kdal.model
 
 import com.squareup.moshi.JsonClass
 
+
+/**
+ *
+ * @see <a href="https://docs.google.com/document/d/1YsPfHxNcKWOE7K92mcY94AFRnEtHkD30r65SjnGkq9A/edit">Short-Range Forecast: Nowcast Forecast</a>
+ *
+ */
 @JsonClass(generateAdapter = true)
 data class Vt1nowcast(
         val icon: Int, // 38

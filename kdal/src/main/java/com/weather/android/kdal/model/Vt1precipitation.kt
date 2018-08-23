@@ -3,6 +3,12 @@ package com.weather.android.kdal.model
 import com.squareup.moshi.JsonClass
 import com.weather.android.kdal.util.validateNoNullsInList
 
+
+/**
+ *
+ * @see <a href="https://docs.google.com/document/d/1YsPfHxNcKWOE7K92mcY94AFRnEtHkD30r65SjnGkq9A/edit">Short-Range Forecast: Precipitation Forecast</a>
+ *
+ */
 @JsonClass(generateAdapter = true)
 data class Vt1precipitation(
         val characteristic: List<Int>,

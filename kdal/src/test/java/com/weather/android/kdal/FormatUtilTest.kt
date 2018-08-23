@@ -18,11 +18,7 @@ class FormatUtilTest {
         assertEquals("$temp $DEGREE_SYMBOL_C", temp.formatTemp(Units.HYBRID, shortFormat = false))
         assertEquals("$temp $DEGREE_SYMBOL", temp.formatTemp(Units.ENGLISH))
         assertEquals("$temp $DEGREE_SYMBOL_F", temp.formatTemp(Units.ENGLISH, shortFormat = false))
-
-
         val temp2: Int? = null;
-
-
     }
 
     @Test

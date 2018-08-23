@@ -1,10 +1,11 @@
 package com.weather.android.kdal.network
 
-import okhttp3.Headers
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
 import java.util.*
+
+//TODO fix Logging
 
 val LOGGING: okhttp3.Interceptor = Interceptor { chain ->
     val request = chain.request()
@@ -52,9 +53,4 @@ internal class RewriteResponse(private val maxCacheAgeInSec: Int) : okhttp3.Inte
                 .removeHeader("Expires")
                 .build()
     }
-}
-
-
-interface HeadersInterceptor {
-    fun onResponse(headers: Headers)
 }
