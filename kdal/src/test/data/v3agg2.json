@@ -1331,6 +1331,7 @@
     "dayOrNight": "D",
     "expirationTimeUtc": 1534963264,
     "iconCode": 28,
+    "iconCodeExtend": 28,
     "obsQualifierCode": null,
     "obsQualifierSeverity": null,
     "precip24Hour": 0.26,

@@ -2,7 +2,6 @@ package com.weather.android.kdal.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import com.squareup.moshi.Moshi
 
 
 @JsonClass(generateAdapter = true)
@@ -14,9 +13,17 @@ data class V3Agg(
 
         val vt1alerts: Vt1alerts?,
 
+        val vt1sickWeatherColdFluSickScore: Vt1sickWeatherColdFluSickScore?,
+
+        val vt1sickWeatherMarkerCount: Vt1sickWeatherMarkerCount?,
+
         val vt1contentMode: Vt1contentMode?,
 
         val vt1currentTides: Vt1currentTides?,
+
+        val vt1flu: Vt1flu?,
+
+        val vt1pastflu: Vt1pastflu?,
 
         val vt1lightning: Vt1lightning?,
 
@@ -114,17 +121,5 @@ data class V3Agg(
 
     }
 
-
-    fun fromFile(path: String): V3Agg? {
-
-        val moshi = Moshi.Builder().build()
-
-        val jsonAdapter = moshi.adapter(V3Agg::class.java)
-
-
-        val jsonString = ""
-
-        return jsonAdapter.fromJson(jsonString)
-    }
 
 }

@@ -16,6 +16,7 @@ data class V3WxObservationsCurrent(
         val dayOrNight: String, // D
         val expirationTimeUtc: Long, // 1531160597
         val iconCode: Int, // 30
+        val iconCodeExtend: Int, //3000
         val obsQualifierCode: String?, // null
         val obsQualifierSeverity: Int?, // null
         val precip24Hour: Double?, // 0.09

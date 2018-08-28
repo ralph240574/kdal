@@ -1,6 +1,7 @@
 package com.weather.android.kdal
 
 import com.squareup.moshi.Moshi
+import com.weather.android.kdal.V3RepoImpl.Companion.getV3AggFromFile
 import com.weather.android.kdal.model.V3Agg
 import org.junit.Assert.assertNotNull
 import org.junit.Test
@@ -100,10 +101,8 @@ class ParsingTest {
 
     @Test
     fun testParseV3Agg() {
-        val adapter = Moshi.Builder().build().adapter<V3Agg>(V3Agg::class.java)
-        val v3AggJson = File("src/test/data/v3Agg2.json").readText()
 
-        val v3Agg = adapter.fromJson(v3AggJson)
+        val v3Agg = getV3AggFromFile("src/test/data/v3Agg2.json")
 
         val v3WxGlobalAirQuality = v3Agg?.v3WxGlobalAirQuality
 

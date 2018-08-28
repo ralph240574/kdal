@@ -171,14 +171,6 @@ class V3RepoImpl constructor(
         val dynamicHeaderMap = mapOf(Pair("Cache-Control", "max-age=${maxAgeResponseInSec}, only-if-cached"))
 
 
-//        return repo.getV3AggFromCache(dynamicHeaderMap,
-//                asString(products),
-//                getLanguageParameter(queryParameters),
-//                getPollenDate(queryParameters),
-//                getScaleParameter(queryParameters),
-//                latLng.toQueryParameter(),
-//                getUnitsParameter(queryParameters))
-//
         val single: Single<Result<V3Agg>> = repo.getV3AggFromCache(dynamicHeaderMap,
                 asString(products),
                 getLanguageParameter(queryParameters),

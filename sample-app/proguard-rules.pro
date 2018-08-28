@@ -23,3 +23,16 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+# Moshi
+-dontwarn org.jetbrains.annotations.**
+-keep class kotlin.Metadata { *; }
+
+-keepclassmembers class com.weather.android.kdal.model.** {
+  <init>(...);
+  <fields>;
+}
+
+-keep class **JsonAdapter {
+    <init>(...);
+    <fields>;
+}

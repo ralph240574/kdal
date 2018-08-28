@@ -37,6 +37,7 @@ class V3RepoTest {
             Product.VT1_LIGHTNING,
             Product.VT1_PRECIPITATION,
             Product.VT1_CURRENT_TIDES,
+            Product.VT1_SICK_WEATHER_COLD_FLU_SICK_SCORE,
             Product.V2_FCSTINTRADAY3,
             Product.V2_IDX_DRY_SKIN_DAYPART15,
             Product.V2_IDX_RUN_HOURLY24,
@@ -59,7 +60,7 @@ class V3RepoTest {
     val rome = LatLng(41.90, 12.49)
     val cairo = LatLng(30.0594698, 31.18)
 
-    val latlongs = listOf(atl)
+    val latlongs = listOf(atl, nyc, la)
 
     val indianCities = File("src/test/data/IndianCities.tsv").readText().split("\n").map { it.toCity().toLatLong() }
 
@@ -115,7 +116,16 @@ class V3RepoTest {
 
     @Test
     fun test() {
-        testProduct(Product.V3_WX_OBSERVATIONS_CURRENT, mode = V3Repo.Mode.NETWORK_ONLY)
+//        testProduct(Product.V3_WX_OBSERVATIONS_CURRENT, mode = V3Repo.Mode.NETWORK_ONLY)
+//        testProduct(Product.VT1_FLU, mode = V3Repo.Mode.NETWORK_ONLY)
+//        testProduct(Product.VT1_PASTFLU, mode = V3Repo.Mode.NETWORK_ONLY)
+//        testProduct(Product.VT1_SICK_WEATHER_COLD_FLU_SICK_SCORE, mode = V3Repo.Mode.NETWORK_ONLY)
+        testProduct(Product.VT1_SICK_WEATHER_MARKER_COUNT, mode = V3Repo.Mode.NETWORK_ONLY)
+
+
+
+//        testProduct(Product.V3_WX_OBSERVATIONS_CURRENT, mode = V3Repo.Mode.NETWORK_ONLY)
+
 //        testProduct(Product.V2_IDX_RUN_DAY_PART15, mode = V3Repo.Mode.NETWORK_ONLY)
 //        testProduct(Product.V2_IDX_RUN_HOURLY24, mode = V3Repo.Mode.NETWORK_ONLY)
 
@@ -130,7 +140,7 @@ class V3RepoTest {
 
 
 //        v3Repo.v3GlobalAirScaleParameterValue = V3WxGlobalAirQuality.SCALE_PARAMETER_VALUE.EPA
-        testProduct(Product.V3_WX_GLOBAL_AIR_QUALITY)
+//        testProduct(Product.V3_WX_GLOBAL_AIR_QUALITY)
 
 //        v3Repo.v3GlobalAirScaleParameterValue = V3WxGlobalAirQuality.SCALE_PARAMETER_VALUE.HJ6332012
 //        testProduct(Product.V3_WX_GLOBAL_AIR_QUALITY)
@@ -170,7 +180,7 @@ class V3RepoTest {
     fun testProduct(prod: Product, mode: V3Repo.Mode = V3Repo.Mode.NETWORK_ONLY, maxAge: Int = 60) {
 
 
-        indianCities.forEach({ it ->
+        latlongs.forEach({ it ->
             v3Repo.latLng = it
 
             val observable =
@@ -212,8 +222,6 @@ class V3RepoTest {
     }
 
 
-
-
     @Test
     fun testfailure() {
         val observable = v3Repo.getV3Agg(
@@ -253,8 +261,6 @@ class V3RepoTest {
         println(throwable)
         println(throwable.stackTrace)
         println("Thread: " + Thread.currentThread())
-        Assert.assertTrue(false)
-
     }
 
 

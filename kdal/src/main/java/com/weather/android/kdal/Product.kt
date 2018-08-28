@@ -9,10 +9,14 @@ enum class Product(val productName: String, val queryParameter: Set<QueryParamet
     VT1_ALERTS("vt1alerts", setOf(LANGUAGE)),
     VT1_CONTENT_MODE("vt1contentMode", setOf()), //this will not work alone in aggregate call
     VT1_CURRENT_TIDES("vt1currentTides"),
+    VT1_FLU("vt1flu"),
     VT1_LIGHTNING("vt1lightning", setOf(LANGUAGE)),
     VT1_NOWCAST("vt1nowcast"),
+    VT1_PASTFLU("vt1pastflu", setOf(LANGUAGE)),
     VT1_POLLENOBS("vt1pollenobs", setOf(LANGUAGE)),
     VT1_PRECIPITATION("vt1precipitation"),
+    VT1_SICK_WEATHER_COLD_FLU_SICK_SCORE("vt1sickWeatherColdFluSickScore", setOf()),//no language or unit parameters
+    VT1_SICK_WEATHER_MARKER_COUNT("vt1sickWeatherMarkerCount", setOf()),//no language of unit parameters
     VT1_WWIR("vt1wwir"),
     V2_FCSTINTRADAY3("v2fcstintraday3"),
     V2_IDX_BREATHING_DAYPART15("v2idxBreathingDaypart15", setOf(LANGUAGE)),
