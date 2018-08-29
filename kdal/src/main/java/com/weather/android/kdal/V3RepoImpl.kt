@@ -85,7 +85,10 @@ class V3RepoImpl constructor(
             val jsonAdapter = moshi.adapter(V3Agg::class.java)
 
             val jsonString = File(path).readText()
-            return jsonAdapter.fromJson(jsonString)
+
+            val agg = jsonAdapter.fromJson(jsonString)
+
+            return agg
         }
 
     }
