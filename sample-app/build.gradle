@@ -37,7 +37,7 @@ android {
 
 dependencies {
     api project(':kdal')
-//        implementation ("com.weather.android:kdal:0.1.0-SNAPSHOT")
+//        implementation ("com.weather.android:kdal:0.1.5-SNAPSHOT")
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${rootProject.ext.kotlin_version}"
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
