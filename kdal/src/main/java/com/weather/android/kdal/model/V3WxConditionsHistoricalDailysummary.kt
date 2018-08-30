@@ -27,7 +27,7 @@ data class V3WxConditionsHistoricalDailysummary(
 ) {
 
     fun validate() {
-
+        //these are validated because this class has no generated JsonAdapte and therefore nullability has to be checked
         dayOfWeek!!
         iconCodeDay!!
         iconCodeNight!!

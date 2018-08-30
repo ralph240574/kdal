@@ -25,6 +25,7 @@ data class V3WxForecastHourly(
         val qpfSnow: List<Double>,
         val relativeHumidity: List<Int>,
         val temperature: List<Int>,
+        val temperatureDewPoint: List<Int>,
         val temperatureFeelsLike: List<Int>,
         val temperatureHeatIndex: List<Int>,
         val temperatureWindChill: List<Int>,
