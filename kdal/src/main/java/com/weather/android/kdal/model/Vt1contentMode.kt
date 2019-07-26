@@ -13,7 +13,7 @@ data class Vt1contentMode(
         val mode: String, // normal
         val effectiveDateTime: String, // 2017-09-08T00:00:00+00:00
         val eventName: String,
-        val eventClickUrl: EventClickUrl
+        val eventClickUrl: EventClickUrl?
 ) {
     @JsonClass(generateAdapter = true)
     data class EventClickUrl(
