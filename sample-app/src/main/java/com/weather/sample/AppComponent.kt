@@ -16,7 +16,6 @@
 package com.weather.sample
 
 import com.weather.sample.ui.ContentFragment
-import com.weather.sample.ui.ScrollingActivity
 import com.weather.sample.ui.SlidingTabsFragment
 import dagger.Component
 import javax.inject.Singleton
@@ -26,6 +25,5 @@ import javax.inject.Singleton
 interface AppComponent {
     fun inject(application: DemoApplication)
     fun inject(contentFragment: ContentFragment)
-    fun inject(scrollingActivity: ScrollingActivity)
     fun inject(slidingTabsFragment: SlidingTabsFragment)
 }

@@ -56,8 +56,6 @@ val v3history = v3Agg.v3WxConditionsHistoricalDailysummary30day
         }
 
 
-
-
     }
 
 

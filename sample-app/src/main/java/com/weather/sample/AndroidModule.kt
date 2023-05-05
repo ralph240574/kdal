@@ -25,7 +25,7 @@ class AndroidModule(private val application: DemoApplication) {
         return V3RepoImpl.newV3Repo(
                 apiKey = apiKey,
                 cacheDir = application.cacheDir,
-                baseUrl = "http://api.weather.com",
+                baseUrl = "https://api.weather.com",
                 logging = true)
     }
 }
